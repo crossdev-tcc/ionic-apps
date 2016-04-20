@@ -40,8 +40,13 @@
 .color-mflightred {
   background-color: #ff0049 !important;
 }
-.color-mflightblue {
+
+.color-text-mflightblue {
   color: #00bcfe !important;
+}
+
+.color-background-mflightblue {
+  background-color: #00bcfe !important;
 }
 
 .color-mfblue {
