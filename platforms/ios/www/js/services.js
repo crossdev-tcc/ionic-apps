@@ -1,5 +1,45 @@
 angular.module('starter.services', [])
 
+.factory('Remedios', function() {
+  // Might use a resource here that returns a JSON array
+
+  // Some fake testing data
+  var remedios = [{
+    id: 0,
+    name: 'Novalgina',
+    expirationDate: '12/12/2012'
+  }, {
+    id: 1,
+    name: 'Maracujina',
+    expirationDate: '12/12/2012'
+  }, {
+    id: 2,
+    name: 'Tylenol',
+    expirationDate: '12/12/2012'
+  }, {
+    id: 3,
+    name: 'Arnica',
+    expirationDate: '12/12/2012'
+  }];
+
+  return {
+    all: function() {
+      return remedios;
+    },
+    remove: function(remedio) {
+      remedios.splice(remedios.indexOf(remedio), 1);
+    },
+    get: function(remedioId) {
+      for (var i = 0; i < remedios.length; i++) {
+        if (remedios[i].id === parseInt(remedioId)) {
+          return remedios[i];
+        }
+      }
+      return null;
+    }
+  };
+})
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
