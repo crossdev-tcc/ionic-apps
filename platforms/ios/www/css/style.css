@@ -1,1 +1,39 @@
 /* Empty. Add your own CSS if you like */
+
+.item-text-center-vertical {
+  line-height: 300%;
+}
+
+.icone-remedio-on {
+  background-repeat: no-repeat;
+  background-position:center;
+  background-image: url('../img/lista_remedios_on.png');
+  background-size: contain;
+}
+
+.icone-remedio-off {
+  background-repeat: no-repeat;
+  background-position:center;
+  background-image: url('../img/lista_remedios_off.png');
+  background-size: contain;
+}
+
+.icone-alerta-on {
+  background-repeat: no-repeat;
+  background-position:center;
+  background-image: url('../img/alerta_remedios_on.png');
+  background-size: contain;
+}
+
+.icone-alerta-off {
+  background-repeat: no-repeat;
+  background-position:center;
+  background-image: url('../img/alerta_remedios_off.png');
+  background-size: contain;
+}
+
+.tabs, .color-mfred {
+  color: #ffffff !important;
+  background-color: #cc0044 !important;
+}
+
