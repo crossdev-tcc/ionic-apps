@@ -53,22 +53,26 @@ angular.module('starter.services', [])
     id: 0,
     name: 'Novalgina',
     nextDate: '12/12/2012 21:00',
-    face: 'img/ben.png'
+    face: 'img/ben.png',
+    active: true
   }, {
     id: 1,
     name: 'Maracujina',
     nextDate: '12/12/2012 21:00',
-    face: 'img/ben.png'
+    face: 'img/ben.png',
+    active: false
   }, {
     id: 2,
     name: 'Tylenol',
     nextDate: '12/12/2012 21:00',
-    face: 'img/ben.png'
+    face: 'img/ben.png',
+    active: false
   }, {
     id: 3,
     name: 'Arnica',
     nextDate: '12/12/2012 21:00',
-    face: 'img/ben.png'
+    face: 'img/ben.png',
+    active: false
   }];
 
   return {
