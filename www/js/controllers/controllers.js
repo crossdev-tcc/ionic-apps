@@ -1,8 +1,5 @@
 angular.module('starter.controllers', [])
 
-
-// .controller('DashCtrl', function($scope) {})
-
 .controller('RemedioCtrl', function($scope, Remedios) {
 
   $scope.$on('mapInitialized', function (event, map) {

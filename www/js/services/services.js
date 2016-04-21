@@ -8,22 +8,22 @@ angular.module('starter.services', [])
     id: 0,
     name: 'Novalgina',
     expirationDate: '12/12/2012',
-    face: 'img/ben.png'
+    face: 'img/ionic.png'
   }, {
     id: 1,
     name: 'Maracujina',
     expirationDate: '12/12/2012',
-    face: 'img/ben.png'
+    face: 'img/ionic.png'
   }, {
     id: 2,
     name: 'Tylenol',
     expirationDate: '12/12/2012',
-    face: 'img/ben.png'
+    face: 'img/ionic.png'
   }, {
     id: 3,
     name: 'Arnica',
     expirationDate: '12/12/2012',
-    face: 'img/ben.png'
+    face: 'img/ionic.png'
   }];
 
   return {
@@ -53,25 +53,25 @@ angular.module('starter.services', [])
     id: 0,
     name: 'Novalgina',
     nextDate: '12/12/2012 21:00',
-    face: 'img/ben.png',
+    face: 'img/ionic.png',
     active: true
   }, {
     id: 1,
     name: 'Maracujina',
     nextDate: '12/12/2012 21:00',
-    face: 'img/ben.png',
+    face: 'img/ionic.png',
     active: false
   }, {
     id: 2,
     name: 'Tylenol',
     nextDate: '12/12/2012 21:00',
-    face: 'img/ben.png',
+    face: 'img/ionic.png',
     active: false
   }, {
     id: 3,
     name: 'Arnica',
     nextDate: '12/12/2012 21:00',
-    face: 'img/ben.png',
+    face: 'img/ionic.png',
     active: false
   }];
 
