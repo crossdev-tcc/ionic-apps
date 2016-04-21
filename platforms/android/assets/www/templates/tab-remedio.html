@@ -1,0 +1,19 @@
+<ion-view view-title="Meus Remédios">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-thumbnail-left item-icon-right" ng-repeat="remedio in remedios" type="item-text-wrap" href="#/tab/remedios/{{remedio.id}}">
+        <img ng-src="{{remedio.face}}">
+        <h2 class="item-text-center-vertical color-mfblue">{{remedio.name}}</h2>
+        <p class="color-mfblue">{{remedio.expirationDate}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+        <ion-option-button class="button-assertive color-background-mflightblue" ng-click="">
+          Tomei
+        </ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="remove(remedio)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
+
