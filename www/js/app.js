@@ -1,5 +1,6 @@
 var app = angular.module('minifarma', [
   'ionic',
+  'ngMessages',
   'ngCordova',
   'ngMap',
   'minifarma.controllers',
@@ -27,6 +28,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
 
+  .state('createMedicament', {
+    url: "/createMedicament",
+    cache: false,
+    controller: 'MedicamentCreateCtrl',
+    templateUrl: "templates/createMedicament.html"
+  })
+
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: '/tab',
@@ -40,7 +48,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/remedios',
     views: {
       'tab-remedio': {
-        templateUrl: 'templates/tab-remedio.html',
+        templateUrl: 'templates/tabs/tab-remedio.html',
         controller: 'MedicamentListCtrl'
       }
     }
@@ -50,7 +58,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/alertas',
     views: {
       'tab-alerta': {
-        templateUrl: 'templates/tab-alerta.html',
+        templateUrl: 'templates/tabs/tab-alerta.html',
         controller: 'AlertaCtrl'
       }
     }

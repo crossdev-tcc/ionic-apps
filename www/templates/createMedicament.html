@@ -1,0 +1,40 @@
+<ion-view view-title="Novo Remédio"
+          hide-back-button="false">
+  <ion-content>
+
+     <!--Form with floating labels-->
+    <form name="createMedicamentForm"
+          novalidate=""
+          ng-submit="addMedicament(createMedicamentForm)"
+          class="create-medicament-form" >
+
+      <ion-list >
+
+        <!-- Medicament Name -->
+        <label class="item item-input item-stacked-label"
+               ng-class="{'has-error':createMedicamentForm.name.$invalid}" >
+        <span class="input-label" >Nome</span >
+        <input type="text"
+               placeholder="Nome do remédio"
+               name="name"
+               ng-model="formData.name"
+               ng-required="true"
+               ng-minlength="2">
+        </label >
+        <div class="form-errors"
+             ng-messages="createMedicamentForm.name.$error"
+             ng-messages-include="templates/form-errors.html" >
+          <div class="form-error"
+               ng-message="minlength" >Por favor, insira um nome válido.
+          </div >
+        </div>
+
+      </ion-list>
+
+      <button class="button button-royal button-block"
+              type="submit" >Salvar
+      </button >
+    </form>
+
+  </ion-content>
+</ion-view>

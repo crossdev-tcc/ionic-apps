@@ -19,3 +19,23 @@ app.controller('MedicamentListCtrl', function($scope, Remedios) {
 /**********************************
  *  MedicamentCreateCtrl
  **********************************/
+app.controller('MedicamentCreateCtrl', function($scope) {
+
+  $scope.addMedicament = function (form) {
+
+    console.log("MedicamentCreateCtrl::addMedicament");
+
+    if(form.$valid) {
+
+    } else {
+      console.log("Invalid form");
+    }
+  };
+
+
+  $scope.addPicture = function () {
+    console.log("Let's add a picture!");
+
+  };
+
+});
