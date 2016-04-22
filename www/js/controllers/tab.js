@@ -1,8 +1,8 @@
 angular.module('minifarma.controllers.tab', [])
 
-  .controller('TabCtrl', function($scope, $window) {
+  .controller('TabCtrl', function($scope, $state) {
 
     $scope.createMedicament = function() {
-      $window.location.href = '/#/createMedicament';
+      $state.go('createMedicament');
     };
   });

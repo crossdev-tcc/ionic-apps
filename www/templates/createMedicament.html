@@ -32,8 +32,8 @@
                ng-minlength="2">
         </label >
         <div class="form-errors"
-             ng-messages="createMedicamentForm.name.$error"
-             ng-messages-include="templates/form-errors.html" >
+             ng-messages="createMedicamentForm.name.$error">
+          <div ng-messages-include="templates/form-errors.html"> </div>
           <div class="form-error"
                ng-message="minlength" >Por favor, insira um nome válido.
           </div >
