@@ -5,6 +5,7 @@ var app = angular.module('minifarma', [
   'ngMap',
   'minifarma.controllers',
   'minifarma.controllers.medicament',
+  'minifarma.controllers.tab',
   'minifarma.services'
 ]);
 
@@ -39,7 +40,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('tab', {
     url: '/tab',
     abstract: true, //can't navigate to
-    templateUrl: 'templates/tabs.html'
+    controller: 'TabCtrl',
+    templateUrl: 'templates/tabs.html',
   })
 
   // Each tab has its own nav history stack:
