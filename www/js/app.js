@@ -38,7 +38,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: '/tab',
-    abstract: true,
+    abstract: true, //can't navigate to
     templateUrl: 'templates/tabs.html'
   })
 

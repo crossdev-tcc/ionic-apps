@@ -54,6 +54,19 @@
 }
 
 .posicao-botao {
-  position: fixed;
   bottom: 25px;
+  position: absolute;
+  left: 50%;
+  width: 50px;
+  margin-left: -25px; }
+
+.round-button {
+  border-radius: 50%;
+  border: 2px solid #cc0044 !important;
+  overflow: hidden;
+  background: #FFFFFF !important; }
+
+.round-button:active {
+  background: #D3D3D3 !important;
 }
+
