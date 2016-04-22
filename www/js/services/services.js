@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('minifarma.services', [])
 
 .factory('Remedios', function() {
   // Might use a resource here that returns a JSON array

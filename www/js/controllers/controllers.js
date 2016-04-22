@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('minifarma.controllers', [])
 
 .controller('RemedioCtrl', function($scope, Remedios) {
 
