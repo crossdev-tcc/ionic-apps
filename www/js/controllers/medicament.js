@@ -19,7 +19,9 @@ app.controller('MedicamentListCtrl', function($scope, Remedios) {
 /**********************************
  *  MedicamentCreateCtrl
  **********************************/
-app.controller('MedicamentCreateCtrl', function($scope, $state) {
+app.controller('MedicamentCreateCtrl', function($scope,
+                                                $state,
+                                                $cordovaCamera) {
 
   $scope.addMedicament = function (form) {
 
@@ -34,6 +36,26 @@ app.controller('MedicamentCreateCtrl', function($scope, $state) {
 
   $scope.addPicture = function () {
     console.log("Let's add a picture!");
+    var options = {
+      quality: 50,
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.PHOTOLIBRARY, // CAMERA
+      allowEdit: true,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 480,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: false
+    };
+
+    $cordovaCamera.getPicture(options).then(function (imageData) {
+      $scope.picture = imageData;
+    }, function (err) {
+      console.error(err);
+      $ionicPopup.alert({
+        title:'Error getting picture',
+        subTitle: 'We had a problem trying to get that picture, please try again'
+      });
+    });
 
   };
 

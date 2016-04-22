@@ -9803,3 +9803,6 @@ form.ng-submitted .form-errors {
 
 form .form-errors {
   display: none; }
+
+.create-form .picture img {
+  width: 100%; }

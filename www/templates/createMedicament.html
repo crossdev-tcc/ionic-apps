@@ -15,7 +15,7 @@
     <form name="createMedicamentForm"
           novalidate=""
           ng-submit="addMedicament(createMedicamentForm)"
-          class="create-medicament-form"
+          class="create-form"
           id="createMedicamentForm">
 
       <ion-list >
@@ -40,6 +40,19 @@
         </div>
 
       </ion-list>
+
+      <button class="button button-icon ion-camera"
+              type="button"
+              ng-click="addPicture()">
+      </button>
+
+      <div class="padding" ng-show="picture">
+        <div class="picture">
+          <img ng-src="data:image/jpeg;base64,{{picture}}"
+               alt="" />
+        </div >
+      </div>
+
     </form>
 
   </ion-content>
