@@ -1,12 +1,22 @@
-<ion-view view-title="Novo Remédio"
-          hide-back-button="false">
-  <ion-content>
+<ion-view view-title="Novo Remédio">
 
+  <ion-nav-buttons side="primary">
+    <button class="button button-clear" ng-click="cancelCreate()">Cancelar</button>
+  </ion-nav-buttons>
+
+  <ion-nav-buttons side="right">
+    <button class="button button-clear"
+            type="submit"
+            form="createMedicamentForm">Salvar</button>
+  </ion-nav-buttons>
+
+  <ion-content>
      <!--Form with floating labels-->
     <form name="createMedicamentForm"
           novalidate=""
           ng-submit="addMedicament(createMedicamentForm)"
-          class="create-medicament-form" >
+          class="create-medicament-form"
+          id="createMedicamentForm">
 
       <ion-list >
 
@@ -30,10 +40,6 @@
         </div>
 
       </ion-list>
-
-      <button class="button button-royal button-block"
-              type="submit" >Salvar
-      </button >
     </form>
 
   </ion-content>

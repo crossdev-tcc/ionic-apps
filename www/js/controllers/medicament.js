@@ -19,7 +19,7 @@ app.controller('MedicamentListCtrl', function($scope, Remedios) {
 /**********************************
  *  MedicamentCreateCtrl
  **********************************/
-app.controller('MedicamentCreateCtrl', function($scope) {
+app.controller('MedicamentCreateCtrl', function($scope, $window) {
 
   $scope.addMedicament = function (form) {
 
@@ -32,9 +32,13 @@ app.controller('MedicamentCreateCtrl', function($scope) {
     }
   };
 
-
   $scope.addPicture = function () {
     console.log("Let's add a picture!");
+
+  };
+
+  $scope.cancelCreate = function () {
+    $window.location.href = '/#/tab/remedios';
 
   };
 
