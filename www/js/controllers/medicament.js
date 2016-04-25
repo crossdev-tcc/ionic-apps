@@ -9,7 +9,11 @@ app.controller('MedicamentListCtrl', function($scope, Remedios) {
     $scope.map = map;
   });
 
-  $scope.remedios = Remedios.all();
+  $scope.remedios =  {
+    "filter" : false,
+    "remedios": Remedios.all()
+  };
+
   $scope.remove = function(remedio) {
     Remedios.remove(remedio);
   };

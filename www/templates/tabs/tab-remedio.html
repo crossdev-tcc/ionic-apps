@@ -1,7 +1,17 @@
 <ion-view view-title="Meus Remédios">
-  <ion-content>
+
+  <div class="bar bar-subheader">
+    <div class="button-bar bar-assertive">
+      <a class="button" ng-click="remedios.filter=false"
+         ng-class="{active: remedios.filter == false}">Válidos</a>
+      <a class="button" ng-click="remedios.filter=true"
+         ng-class="{active: remedios.filter == true}">Vencidos</a>
+    </div>
+  </div>
+
+  <ion-content class="has-header has-subheader">
     <ion-list>
-      <ion-item class="item-remove-animate item-thumbnail-left item-icon-right" ng-repeat="remedio in remedios" type="item-text-wrap" href="#/tab/remedios/{{remedio.id}}">
+      <ion-item class="item-remove-animate item-thumbnail-left item-icon-right" ng-repeat="remedio in remedios.remedios | filter : remedios.filter" type="item-text-wrap" href="#/tab/remedios/{{remedio.id}}">
         <img ng-src="{{remedio.face}}">
         <h2 class="item-text-center-vertical color-mfblue">{{remedio.name}}</h2>
         <p class="color-mfblue">{{remedio.expirationDate}}</p>

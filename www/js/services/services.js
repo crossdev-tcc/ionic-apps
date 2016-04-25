@@ -8,22 +8,26 @@ angular.module('minifarma.services', [])
     id: 0,
     name: 'Novalgina',
     expirationDate: '12/12/2012',
-    face: 'img/ionic.png'
+    face: 'img/ionic.png',
+    expired: true
   }, {
     id: 1,
     name: 'Maracujina',
     expirationDate: '12/12/2012',
-    face: 'img/ionic.png'
+    face: 'img/ionic.png',
+    expired: true
   }, {
     id: 2,
     name: 'Tylenol',
     expirationDate: '12/12/2012',
-    face: 'img/ionic.png'
+    face: 'img/ionic.png',
+    expired: false
   }, {
     id: 3,
     name: 'Arnica',
     expirationDate: '12/12/2012',
-    face: 'img/ionic.png'
+    face: 'img/ionic.png',
+    expired: false
   }];
 
   return {
