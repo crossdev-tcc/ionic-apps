@@ -9806,3 +9806,8 @@ form .form-errors {
 
 .create-form .picture img {
   width: 100%; }
+
+.platform-android .bar-custom {
+  top: 93px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid; }
