@@ -1,4 +1,7 @@
-angular.module('minifarma.controllers', [])
+angular.module('minifarma.controllers', [
+    'minifarma.controllers.medicament',
+    'minifarma.controllers.tab'
+])
 
 .controller('AlertaCtrl', function($scope, Alertas) {
   $scope.alertas = Alertas.all();

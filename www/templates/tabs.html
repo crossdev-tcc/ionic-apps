@@ -5,7 +5,7 @@ navigation history that also transitions its views in and out.
 -->
 <ion-tabs class="tabs-icon-top tabs-background-assertive tabs-color-light">
 
-  <button ng-if="ionic.Platform.isIOS()"
+  <button ng-if="isIOS === true"
           class="button button-outline button-assertive icon ion-plus-round posicao-botao round-button"
           ng-click="createMedicament()">
   </button>

@@ -4,8 +4,6 @@ var app = angular.module('minifarma', [
   'ngCordova',
   'ngMap',
   'minifarma.controllers',
-  'minifarma.controllers.medicament',
-  'minifarma.controllers.tab',
   'minifarma.services'
 ]);
 
@@ -43,7 +41,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   })
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
     abstract: true, //can't navigate to
     controller: 'TabCtrl',
@@ -71,7 +69,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   });
-
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/remedios');
 
