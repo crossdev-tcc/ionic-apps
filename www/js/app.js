@@ -45,7 +45,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/tab',
     abstract: true, //can't navigate to
     controller: 'TabCtrl',
-    templateUrl: 'templates/tabs.html',
+    templateUrl: function() {
+      if (ionic.Platform.isAndroid()) {
+        return  "templates/tabs-android.html";
+      }
+      return "templates/tabs.html";
+    }
   })
 
   // Each tab has its own nav history stack:
