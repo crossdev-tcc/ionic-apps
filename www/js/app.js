@@ -33,13 +33,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
 
-  .state('createMedicament', {
-    url: "/createMedicament",
-    cache: false,
-    controller: 'MedicamentCreateCtrl',
-    templateUrl: "templates/createMedicament.html"
-  })
-
   // setup an abstract state for the tabs directive
   .state('tab', {
     url: '/tab',
@@ -70,10 +63,25 @@ app.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'tab-alerta': {
         templateUrl: 'templates/tabs/tab-alerta.html',
-        controller: 'AlertaCtrl'
+        controller: 'AlertListCtrl'
       }
     }
+  })
+
+  .state('createMedicament', {
+    url: "/createMedicament",
+    cache: false,
+    controller: 'MedicamentCreateCtrl',
+    templateUrl: "templates/createMedicament.html"
+  })
+
+  .state('createAlert', {
+    url: "/createAlert",
+    cache: false,
+    controller: 'AlertCreateCtrl',
+    templateUrl: "templates/createAlert.html"
   });
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/remedios');
 

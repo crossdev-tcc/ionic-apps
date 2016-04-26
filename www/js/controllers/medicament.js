@@ -4,11 +4,9 @@ var app = angular.module('minifarma.controllers.medicament', []);
  *  MedicamentListCtrl
  **********************************/
 app.controller('MedicamentListCtrl', function($scope, Remedios) {
-  
-  $scope.$on('mapInitialized', function (event, map) {
-    $scope.map = map;
-  });
 
+  $scope.isAndroid = ionic.Platform.isAndroid();
+  
   $scope.remedios =  {
     "filter" : false,
     "remedios": Remedios.all()

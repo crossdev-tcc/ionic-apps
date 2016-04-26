@@ -1,7 +1,21 @@
 <ion-view view-title="Meus Alertas">
-  <ion-content>
+
+  <div class="platform-android bar-custom bar bar-subheader">
+    <div class="button-bar">
+      <a class="button button-outline button-assertive" ng-click="data.filter=true"
+         ng-class="{active: data.filter == true}">Ativos</a>
+      <a class="button button-outline button-assertive" ng-click="data.filter=false"
+         ng-class="{active: data.filter == false}">Inativos</a>
+    </div>
+  </div>
+
+  <ion-nav-buttons side="primary">
+    <button ng-if="isAndroid === true" class="button button-icon icon ion-plus" ng-click="createAlert()"></button>
+  </ion-nav-buttons>
+
+  <ion-content class="has-header has-subheader">
     <ion-list>
-      <ion-item class="item-remove-animate item-thumbnail-left item-icon-right" ng-repeat="alerta in alertas" type="item-text-wrap" href="#/tab/alertas/{{alerta.id}}">
+      <ion-item class="item-thumbnail-left item-icon-right" ng-repeat="alerta in data.alertas | filter : data.filter" type="item-text-wrap" href="#/tab/alertas/{{alerta.id}}">
         <img ng-src="{{alerta.face}}">
 
         <h2 class="item-text-center-vertical color-mfblue">{{alerta.name}}</h2>

@@ -9,6 +9,10 @@
     </div>
   </div>
 
+  <ion-nav-buttons side="primary">
+    <button ng-if="isAndroid === true" class="button button-icon icon ion-plus" ng-click="createMedicament()"></button>
+  </ion-nav-buttons>
+
   <ion-content class="has-header has-subheader">
     <ion-list>
       <ion-item class=" item-thumbnail-left item-icon-right" ng-repeat="remedio in remedios.remedios | filter : remedios.filter" type="item-text-wrap" href="#/tab/remedios/{{remedio.id}}">

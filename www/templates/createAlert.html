@@ -1,0 +1,47 @@
+<ion-view view-title="Novo Alerta">
+
+  <ion-nav-buttons side="secondary">
+    <button class="button button-clear" ng-click="cancelCreate()">Cancelar</button>
+  </ion-nav-buttons>
+
+  <ion-nav-buttons side="primary">
+    <button class="button button-clear"
+            type="submit"
+            form="createAlertForm">Salvar</button>
+  </ion-nav-buttons>
+
+  <ion-content>
+    <!--Form with floating labels-->
+    <form name="createAlertForm"
+          novalidate=""
+          ng-submit="addMedicament(createAlertForm)"
+          class="create-form"
+          id="createAlertForm">
+
+      <ion-list >
+
+        <!-- Medicament Name -->
+        <label class="item item-input item-stacked-label"
+               ng-class="{'has-error':createAlertForm.name.$invalid}" >
+          <span class="input-label" >Nome</span >
+          <input type="text"
+                 placeholder="Nome do alerta"
+                 name="name"
+                 ng-model="formData.name"
+                 ng-required="true"
+                 ng-minlength="2">
+        </label >
+        <div class="form-errors"
+             ng-messages="createAlertForm.name.$error">
+          <div ng-messages-include="templates/form-errors.html"> </div>
+          <div class="form-error"
+               ng-message="minlength" >Por favor, insira um nome válido.
+          </div >
+        </div>
+
+      </ion-list>
+
+    </form>
+
+  </ion-content>
+</ion-view>
