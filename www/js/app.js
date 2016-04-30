@@ -7,7 +7,7 @@ var app = angular.module('minifarma', [
   'minifarma.services'
 ]);
 
-var db = null;
+var db;
 
 app.run(function($ionicPlatform, $cordovaSQLite) {
   $ionicPlatform.ready(function() {
@@ -23,8 +23,8 @@ app.run(function($ionicPlatform, $cordovaSQLite) {
       StatusBar.styleDefault();
     }
 
-    db = window.sqlitePlugin.openDatabase({name: 'my.db', location: 'default'});
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS medicament (id integer primary key, name text)");
+    db = $cordovaSQLite.openDB({name: 'my.db', location: 'default'});
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Medicament (id integer primary key, name text)");
 
   });
 })
