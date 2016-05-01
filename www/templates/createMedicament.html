@@ -20,38 +20,61 @@
 
       <ion-list >
 
-        <!-- Medicament Name -->
-        <label class="item item-input item-stacked-label"
-               ng-class="{'has-error':createMedicamentForm.name.$invalid}" >
-        <span class="input-label" >Nome</span >
-        <input type="text"
-               placeholder="Nome do remédio"
-               name="name"
-               ng-model="formData.name"
-               ng-required="true"
-               ng-minlength="2">
-        </label >
-        <div class="form-errors"
-             ng-messages="createMedicamentForm.name.$error">
-          <div ng-messages-include="templates/form-errors.html"> </div>
-          <div class="form-error"
-               ng-message="minlength" >Por favor, insira um nome válido.
-          </div >
+        <div class="row row-center">
+          <div class="col" style="background-color: lightgrey;  display: flex; align-items: center; justify-content: center; height:40vw;" ng-click="addPicture()">
+
+            <!-- Add Photo -->
+            <button class="button button-clear button-calm"
+                    ng-show="!picture" type="button">
+              adicionar foto
+            </button>
+
+            <!-- Photo -->
+            <div class="padding" ng-show="picture">
+              <div class="picture">
+                <img ng-src="data:image/jpeg;base64,{{picture}}"
+                     alt="" />
+                <!--<img src="http://www.planetesante.ch/var/ezdemo_site/storage/images/media/images/00-rubriques/medicaments/paracetamol/32040-1-eng-GB/paracetamol_gallerylarge.jpg"/>-->
+              </div >
+            </div>
+          </div>
+          <div class="col">
+            <!-- Medicament Name -->
+            <label class="item item-input item-stacked-label"
+                   ng-class="{'has-error':createMedicamentForm.name.$invalid}" >
+              <input type="text"
+                     placeholder="Nome"
+                     name="name"
+                     ng-model="formData.name"
+                     ng-required="true"
+                     ng-minlength="2"
+                     class="text-center">
+            </label >
+            <div class="form-errors"
+                 ng-messages="createMedicamentForm.name.$error">
+              <div ng-messages-include="templates/form-errors.html"> </div>
+              <div class="form-error"
+                   ng-message="minlength" >Por favor, insira um nome válido.
+              </div >
+            </div>
+            <br>
+            <!-- Expiration Date -->
+            <label class="item item-input item-stacked-label" >
+              <input type="text"
+                     placeholder="Data de Validade"
+                     name="expirationDate"
+                     ng-model="formData.expirationDate"
+                     ng-required="true"
+                     ng-minlength="2"
+                     class="text-center">
+            </label >
+          </div>
         </div>
 
+
+
+
       </ion-list>
-
-      <button class="button button-icon ion-camera"
-              type="button"
-              ng-click="addPicture()">
-      </button>
-
-      <div class="padding" ng-show="picture">
-        <div class="picture">
-          <img ng-src="data:image/jpeg;base64,{{picture}}"
-               alt="" />
-        </div >
-      </div>
 
     </form>
 

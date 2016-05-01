@@ -25,7 +25,6 @@ app.controller('MedicamentCreateCtrl', function($scope,
                                                 $state,
                                                 $cordovaCamera,
                                                 $ionicActionSheet,
-                                                $timeout,
                                                 $cordovaSQLite) {
 
   $scope.addMedicament = function (form) {
@@ -68,11 +67,6 @@ app.controller('MedicamentCreateCtrl', function($scope,
         console.log("Remover imagem do remédio");
       }
     });
-
-    $timeout(function() {
-      hideSheet();
-    }, 2000);
-
   };
 
   $scope.doGetFromGallery = function () {
@@ -128,16 +122,6 @@ app.controller('MedicamentCreateCtrl', function($scope,
   $scope.cancelCreate = function () {
     $state.go('tab.remedio');
   };
-
-  // $scope.insert = function (medicamentName) {
-  //   $cordovaSQLite.execute('INSERT INTO Medicament VALUES (?)', [medicamentName], function (result) {
-  //     console.log('resultSet.insertId: ' + result.insertId);
-  //     console.log('resultSet.rowsAffected: ' + result.rowsAffected);
-  //   }, function(error) {
-  //     console.log('INSERT error: ' + error.message);
-  //   });
-  //
-  // };
 
   $scope.insert = function(medicamentName) {
 
