@@ -21,20 +21,18 @@
       <ion-list >
 
         <div class="row row-center">
-          <div class="col" style="background-color: lightgrey;  display: flex; align-items: center; justify-content: center; height:40vw;" ng-click="addPicture()">
+          <div class="col" style="display: flex; align-items: center; justify-content: center;" ng-click="addPicture()">
 
             <!-- Add Photo -->
-            <button class="button button-clear button-calm"
-                    ng-show="!picture" type="button">
+            <div class="calm" ng-show="!picture" style="height:45vw; display: flex; align-items: center;">
               adicionar foto
-            </button>
+            </div>
 
             <!-- Photo -->
-            <div class="padding" ng-show="picture">
+            <div class="" ng-show="picture">
               <div class="picture">
-                <img ng-src="data:image/jpeg;base64,{{picture}}"
-                     alt="" />
-                <!--<img src="http://www.planetesante.ch/var/ezdemo_site/storage/images/media/images/00-rubriques/medicaments/paracetamol/32040-1-eng-GB/paracetamol_gallerylarge.jpg"/>-->
+                <img ng-src="data:image/jpeg;base64,{{picture}}" alt="" style="height:45vw;"/>
+                <!--<img src="http://www.urbansamurai.com/wp-content/uploads/2012/03/medicine_pills.jpg" style="height:45vw;"/>-->
               </div >
             </div>
           </div>
@@ -70,9 +68,6 @@
             </label >
           </div>
         </div>
-
-
-
 
       </ion-list>
 
