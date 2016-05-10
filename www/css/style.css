@@ -87,3 +87,9 @@
 .list .item.item-accordion.ng-hide-remove {
   display: block !important;
 }
+
+.segmented-collapsed {
+  font-size: 13px;
+  line-height: 29px;
+  min-height: 31px;
+}

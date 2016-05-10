@@ -9838,3 +9838,9 @@ form .form-errors {
   font-size: 12px;
   font-weight: bold;
   border-bottom-width: 0px; }
+
+.segmented-collapsed {
+  font-size: 13px;
+  line-height: 29px;
+  min-height: 31px;
+}
