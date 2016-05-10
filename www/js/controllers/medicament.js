@@ -18,14 +18,47 @@ app.controller('MedicamentListCtrl', function($scope, Remedios) {
 
 });
 
+app.factory('Category', function() {
+
+  category = {};
+  category.name = '';
+  return category;
+});
+
 /**********************************
  *  MedicamentCreateCtrl
  **********************************/
+app.controller('MedicamentCategoryListCtrl', function($scope,
+                                                      Category) {
+  $scope.selectedCategory =  Category;
+  $scope.shouldShowDelete = false;
+
+  $scope.categories = [
+    {
+      name: "Antidrepessivos"
+    },
+    {
+      name: "Dor de cabeça"
+    },
+    {
+      name: "Dor muscular"
+    },
+    {
+      name: "Hipertensão"
+    }
+
+  ]
+
+
+});
+
 app.controller('MedicamentCreateCtrl', function($scope,
                                                 $state,
                                                 $cordovaCamera,
                                                 $ionicActionSheet,
-                                                $cordovaSQLite) {
+                                                $cordovaSQLite,
+                                                Category) {
+  $scope.category =  Category;
 
   $scope.groups = [];
   $scope.groups[0] = {

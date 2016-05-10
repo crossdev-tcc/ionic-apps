@@ -75,6 +75,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: "templates/createMedicament.html"
   })
 
+  .state('categoryList', {
+    url: "/categoryList",
+    cache: false,
+    controller: 'MedicamentCategoryListCtrl',
+    templateUrl: "templates/categoryList.html"
+  })
+
   .state('createAlert', {
     url: "/createAlert",
     cache: false,

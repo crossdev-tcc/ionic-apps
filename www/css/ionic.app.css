@@ -9791,6 +9791,22 @@ a.button {
 .round-button:active {
   background: #D3D3D3 !important; }
 
+/*
+ * http://docs.angularjs.org/api/ng/directive/ngShow#usage_animations
+ */
+.list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear; }
+
+.list .item.item-accordion.ng-hide {
+  line-height: 0px; }
+
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important; }
+
 form.ng-submitted label.has-error {
   border-bottom: 2px solid #CC0044; }
 
@@ -9822,27 +9838,3 @@ form .form-errors {
   font-size: 12px;
   font-weight: bold;
   border-bottom-width: 0px; }
-
-
-/*
- * http://docs.angularjs.org/api/ng/directive/ngShow#usage_animations
- */
-.list .item.item-accordion {
-  line-height: 38px;
-  padding-top: 0;
-  padding-bottom: 0;
-  transition: 0.09s all linear;
-}
-.list .item.item-accordion.ng-hide {
-  line-height: 0px;
-}
-.list .item.item-accordion.ng-hide-add,
-.list .item.item-accordion.ng-hide-remove {
-  display: block !important;
-}
-
-.segmented-collapsed {
-  font-size: 13px;
-  line-height: 29px;
-  min-height: 31px;
-}

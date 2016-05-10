@@ -70,10 +70,12 @@
         </div>
 
         <!-- Category -->
-        <label class="item item-icon-right assertive">
+        <label class="item item-icon-right assertive"
+               ng-click=""
+               ui-sref="categoryList">
             Categoria
           <span class="item-note calm">
-            Antidepressivos
+            {{category.name}}
           </span>
           <i class="icon ion-ios-arrow-forward" style="color: lightgray"></i>
         </label>
