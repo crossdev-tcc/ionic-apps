@@ -27,6 +27,19 @@ app.controller('MedicamentCreateCtrl', function($scope,
                                                 $ionicActionSheet,
                                                 $cordovaSQLite) {
 
+  $scope.shownGroup = null;
+  $scope.toggleGroup = function(group) {
+    if ($scope.isGroupShown(group)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = group;
+    }
+  };
+  $scope.isGroupShown = function(group) {
+    return $scope.shownGroup === group;
+  };
+
+
   $scope.addMedicament = function (form) {
 
     console.log("MedicamentCreateCtrl::addMedicament");

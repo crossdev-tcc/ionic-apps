@@ -69,6 +69,101 @@
           </div>
         </div>
 
+        <!-- Category -->
+        <label class="item item-icon-right assertive">
+            Categoria
+          <span class="item-note calm">
+            Antidepressivos
+          </span>
+          <i class="icon ion-ios-arrow-forward" style="color: lightgray"></i>
+        </label>
+
+        <!-- Intervalo -->
+        <label class="item item-input item-select">
+          <div class="input-label assertive">
+            Intervalo
+          </div>
+          <select>
+            <option>1 hora</option>
+            <option selected>2 horas</option>
+            <option>3 hora(s)</option>
+            <option>4 hora(s)</option>
+            <option>6 hora(s)</option>
+            <option>8 hora(s)</option>
+            <option>12 hora(s)</option>
+            <option>24 hora(s)</option>
+          </select>
+        </label>
+
+        <!-- Farmácia -->
+        <label class="item item-icon-right assertive">
+          Farmácia
+          <i class="icon ion-ios-arrow-forward" style="color: lightgray"></i>
+        </label>
+
+        <!-- Local -->
+        <label class="item item-input item-select">
+          <div class="input-label assertive">
+            Local
+          </div>
+          <select>
+            <option>Caixa</option>
+            <option>Casa</option>
+            <option>Escritório</option>
+          </select>
+        </label>
+
+
+        <!-- Quantidade -->
+        <label class="item assertive"
+               ng-click="toggleGroup(group)"
+               ng-class="{active: isGroupShown(group)}">
+          Quantidade
+          <span class="item-note calm"> 1000 </span>
+        </label>
+        <div class="item-accordion"
+                  ng-show="isGroupShown(group)">
+
+          <div class="row">
+            <div class="col item-input-inset">
+                <label class="item-input-wrapper">
+                  <input type="text" placeholder="1000">
+                </label>
+
+            </div>
+            <div class="col">
+              <div class=" button-bar">
+                <a class="button button-outline button-assertive segmented-collapsed" ng-click=""
+                   ng-class="">cp</a>
+                <a class="button button-outline button-assertive segmented-collapsed" ng-click=""
+                   ng-class="{active: true}">g</a>
+                <a class="button button-outline button-assertive segmented-collapsed" ng-click=""
+                   ng-class="">ml</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alarme -->
+        <div class="item item-toggle assertive">
+          Alarme
+          <label class="toggle toggle-assertive">
+            <input type="checkbox">
+            <div class="track">
+              <div class="handle"></div>
+            </div>
+          </label>
+        </div>
+
+        <div class="item item-input-inset">
+          <label class="item-input-wrapper">
+            <input type="text" placeholder="Email">
+          </label>
+          <button class="button button-small">
+            Submit
+          </button>
+        </div>
+
       </ion-list>
 
     </form>
