@@ -10,7 +10,7 @@
   <ion-content>
     <ion-list show-delete="shouldShowDelete">
       <!--{{selectedCategory.name}}-->
-      <ion-item ng-repeat="category in categories">
+      <ion-item ng-repeat="category in categories" ng-click="select(category.name)">
 
         <h2>{{category.name}}</h2>
         <ion-option-button class="button-assertive" style="background-color:#ef473a"

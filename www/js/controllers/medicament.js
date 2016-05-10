@@ -29,6 +29,7 @@ app.factory('Category', function() {
  *  MedicamentCreateCtrl
  **********************************/
 app.controller('MedicamentCategoryListCtrl', function($scope,
+                                                      $ionicHistory,
                                                       Category) {
   $scope.selectedCategory =  Category;
   $scope.shouldShowDelete = false;
@@ -46,9 +47,12 @@ app.controller('MedicamentCategoryListCtrl', function($scope,
     {
       name: "Hipertensão"
     }
+  ];
 
-  ]
-
+  $scope.select = function(categoryName) {
+    $scope.selectedCategory.name = categoryName;
+    $ionicHistory.goBack();
+  };
 
 });
 
