@@ -27,7 +27,19 @@ app.controller('MedicamentCreateCtrl', function($scope,
                                                 $ionicActionSheet,
                                                 $cordovaSQLite) {
 
+  $scope.groups = [];
+  $scope.groups[0] = {
+    name: "Quantidade",
+  }
+  $scope.groups[1] = {
+    name: "Dose",
+  }
+
   $scope.shownGroup = null;
+  /*
+   * if given group is the selected group, deselect it
+   * else, select the given group
+   */
   $scope.toggleGroup = function(group) {
     if ($scope.isGroupShown(group)) {
       $scope.shownGroup = null;

@@ -116,29 +116,65 @@
 
         <!-- Quantidade -->
         <label class="item assertive"
-               ng-click="toggleGroup(group)"
-               ng-class="{active: isGroupShown(group)}">
+               ng-click="toggleGroup(groups[0])"
+               ng-class="{active: isGroupShown(groups[0])}">
           Quantidade
-          <span class="item-note calm"> 1000 </span>
+          <span class="item-note calm"> {{ formData.quantity }} {{ formData.doseType }}</span>
         </label>
         <div class="item-accordion"
-                  ng-show="isGroupShown(group)">
+             ng-show="isGroupShown(groups[0])">
 
           <div class="row">
             <div class="col item-input-inset">
-                <label class="item-input-wrapper">
-                  <input type="text" placeholder="1000">
-                </label>
+              <label class="item-input-wrapper">
+                <input type="text" placeholder="" ng-model="formData.quantity">
+              </label>
 
             </div>
             <div class="col">
               <div class=" button-bar">
-                <a class="button button-outline button-assertive segmented-collapsed" ng-click=""
-                   ng-class="">cp</a>
-                <a class="button button-outline button-assertive segmented-collapsed" ng-click=""
-                   ng-class="{active: true}">g</a>
-                <a class="button button-outline button-assertive segmented-collapsed" ng-click=""
-                   ng-class="">ml</a>
+                <a class="button button-outline button-assertive segmented-collapsed"
+                   ng-click="formData.doseType='cp'"
+                   ng-class="{active: formData.doseType =='cp'}">cp</a>
+                <a class="button button-outline button-assertive segmented-collapsed"
+                   ng-click="formData.doseType='g'"
+                   ng-class="{active: formData.doseType =='g'}">g</a>
+                <a class="button button-outline button-assertive segmented-collapsed"
+                   ng-click="formData.doseType='ml'"
+                   ng-class="{active: formData.doseType =='ml'}">ml</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dose -->
+        <label class="item assertive"
+               ng-click="toggleGroup(groups[1])"
+               ng-class="{active: isGroupShown(groups[1])}">
+          Dose
+          <span class="item-note calm"> {{ formData.dose }} {{ formData.doseType }}</span>
+        </label>
+        <div class="item-accordion"
+             ng-show="isGroupShown(groups[1])">
+
+          <div class="row">
+            <div class="col item-input-inset">
+              <label class="item-input-wrapper">
+                <input type="text" placeholder="" ng-model="formData.dose">
+              </label>
+
+            </div>
+            <div class="col">
+              <div class=" button-bar">
+                <a class="button button-outline button-assertive segmented-collapsed"
+                   ng-click="formData.doseType='cp'"
+                   ng-class="{active: formData.doseType =='cp'}">cp</a>
+                <a class="button button-outline button-assertive segmented-collapsed"
+                   ng-click="formData.doseType='g'"
+                   ng-class="{active: formData.doseType =='g'}">g</a>
+                <a class="button button-outline button-assertive segmented-collapsed"
+                   ng-click="formData.doseType='ml'"
+                   ng-class="{active: formData.doseType =='ml'}">ml</a>
               </div>
             </div>
           </div>
