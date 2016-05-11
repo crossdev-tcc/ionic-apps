@@ -3,16 +3,33 @@ var app = angular.module('minifarma.controllers.pharmacy', ['ngMap']);
 /**********************************
  *  PharmacyCreateCtrl
  **********************************/
-app.controller('PharmacyCreateCtrl', function($scope, $state) {
+app.factory('Pharmacy', function() {
+   pharmacy = {};
+   pharmacy.name = '';
+   pharmacy.phone = '';
+   pharmacy.lat = '';
+   pharmacy.lon = '';
+   return pharmacy;
+});
+
+app.controller('PharmacyCreateCtrl', function($scope, $state, Pharmacy) {
 
   $scope.currentPosition = {};
   $scope.marker = null;
+  $scope.pharmacyLat = null;
+  $scope.pharmacyLon = null;
+  $scope.pharmacy =  Pharmacy;
 
   $scope.addPharmacy = function (form) {
     console.log("PharmacyCreateCtrl::addPharmacy");
 
     if(form.$valid) {
-
+      $scope.pharmacy.name = form.name.$viewValue;
+      $scope.pharmacy.phone = form.phone.$viewValue;
+      $scope.pharmacy.lat = $scope.pharmacyLat;
+      $scope.pharmacy.lon = $scope.pharmacyLon;
+      console.log($scope.pharmacy);
+      // $scope.insert();
     } else {
       console.log("Invalid form");
     }
@@ -53,10 +70,12 @@ app.controller('PharmacyCreateCtrl', function($scope, $state) {
 
       google.maps.event.addListener($scope.marker, 'dragend', function(dragEvent){
           console.log('Lat: ' + dragEvent.latLng.lat().toFixed(6) + ' Lon: ' + dragEvent.latLng.lng().toFixed(6));
+          $scope.pharmacyLat = dragEvent.latLng.lat().toFixed(6);
+          $scope.pharmacyLon = dragEvent.latLng.lng().toFixed(6);
       });
 
       $scope.marker.setMap($scope.map);
 
     });
-  }
+  };
 });
