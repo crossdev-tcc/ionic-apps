@@ -6,7 +6,7 @@ var app = angular.module('minifarma.controllers.medicament', []);
 app.controller('MedicamentListCtrl', function($scope, Remedios) {
 
   $scope.isAndroid = ionic.Platform.isAndroid();
-  
+
   $scope.remedios =  {
     "filter" : false,
     "remedios": Remedios.all()
@@ -18,21 +18,84 @@ app.controller('MedicamentListCtrl', function($scope, Remedios) {
 
 });
 
+app.factory('Category', function() {
+
+  category = {};
+  category.name = '';
+  return category;
+});
+
 /**********************************
  *  MedicamentCreateCtrl
  **********************************/
+app.controller('MedicamentCategoryListCtrl', function($scope,
+                                                      $ionicHistory,
+                                                      Category) {
+  $scope.selectedCategory =  Category;
+  $scope.shouldShowDelete = false;
+
+  $scope.categories = [
+    {
+      name: "Antidrepessivos"
+    },
+    {
+      name: "Dor de cabeça"
+    },
+    {
+      name: "Dor muscular"
+    },
+    {
+      name: "Hipertensão"
+    }
+  ];
+
+  $scope.select = function(categoryName) {
+    $scope.selectedCategory.name = categoryName;
+    $ionicHistory.goBack();
+  };
+
+});
+
 app.controller('MedicamentCreateCtrl', function($scope,
                                                 $state,
                                                 $cordovaCamera,
                                                 $ionicActionSheet,
-                                                $timeout) {
+                                                $cordovaSQLite,
+                                                Category) {
+  $scope.category =  Category;
+
+  $scope.groups = [];
+  $scope.groups[0] = {
+    name: "Quantidade",
+  }
+  $scope.groups[1] = {
+    name: "Dose",
+  }
+
+  $scope.shownGroup = null;
+  /*
+   * if given group is the selected group, deselect it
+   * else, select the given group
+   */
+  $scope.toggleGroup = function(group) {
+    if ($scope.isGroupShown(group)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = group;
+    }
+  };
+  $scope.isGroupShown = function(group) {
+    return $scope.shownGroup === group;
+  };
+
 
   $scope.addMedicament = function (form) {
 
     console.log("MedicamentCreateCtrl::addMedicament");
 
     if(form.$valid) {
-
+      console.log(form.name.$viewValue);
+      $scope.insert(form.name.$viewValue);
     } else {
       console.log("Invalid form");
     }
@@ -66,11 +129,6 @@ app.controller('MedicamentCreateCtrl', function($scope,
         console.log("Remover imagem do remédio");
       }
     });
-
-    $timeout(function() {
-      hideSheet();
-    }, 2000);
-
   };
 
   $scope.doGetFromGallery = function () {
@@ -126,5 +184,17 @@ app.controller('MedicamentCreateCtrl', function($scope,
   $scope.cancelCreate = function () {
     $state.go('tab.remedio');
   };
+
+  $scope.insert = function(medicamentName) {
+
+    $cordovaSQLite.execute(db, 'INSERT INTO Medicament (name) VALUES (?)', [medicamentName])
+      .then(function(result) {
+        console.log("Message inserted successful, cheers!");
+        console.log('resultSet.insertId: ' + result.insertId);
+      }, function(error) {
+        console.log("Error on insert: " + error.message);
+      })
+
+  }
 
 });

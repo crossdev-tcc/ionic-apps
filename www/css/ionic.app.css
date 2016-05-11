@@ -9791,6 +9791,22 @@ a.button {
 .round-button:active {
   background: #D3D3D3 !important; }
 
+/*
+ * http://docs.angularjs.org/api/ng/directive/ngShow#usage_animations
+ */
+.list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear; }
+
+.list .item.item-accordion.ng-hide {
+  line-height: 0px; }
+
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important; }
+
 form.ng-submitted label.has-error {
   border-bottom: 2px solid #CC0044; }
 
@@ -9814,12 +9830,11 @@ form .form-errors {
 
 .tabs-striped .tab-item {
   margin-top: 1px;
-  font-size: 12px;  }
+  font-size: 12px; }
 
 .tabs-striped .tab-item.tab-item-active,
 .tabs-striped > .tabs {
   text-transform: uppercase;
   font-size: 12px;
   font-weight: bold;
-  border-bottom-width: 0px;
-  }
+  border-bottom-width: 0px; }
