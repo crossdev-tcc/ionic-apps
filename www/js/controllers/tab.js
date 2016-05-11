@@ -29,6 +29,7 @@ angular.module('minifarma.controllers.tab', [])
               $scope.createAlert();
               break;
             case 2:
+              $scope.createPharmacy();
               break;
           }
           return true;
@@ -49,4 +50,7 @@ angular.module('minifarma.controllers.tab', [])
       $state.go('createAlert');
     };
 
+    $scope.createPharmacy = function() {
+      $state.go('createPharmacy');
+    };
   });
