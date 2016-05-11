@@ -80,8 +80,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
     cache: false,
     controller: 'AlertCreateCtrl',
     templateUrl: "templates/createAlert.html"
-  });
+  })
 
+  .state('createPharmacy', {
+    url: "/createPharmacy",
+    cache: false,
+    controller: 'PharmacyCreateCtrl',
+    templateUrl: "templates/createPharmacy.html"
+  });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/remedios');
 
