@@ -66,17 +66,17 @@ app.controller('MedicamentCreateCtrl', function($scope,
 
   $scope.groups = [];
   $scope.groups[0] = {
-    name: "Quantidade",
-  }
+    name: "Quantidade"
+  };
   $scope.groups[1] = {
-    name: "Dose",
-  }
+    name: "Dose"
+  };
+  $scope.groups[2] = {
+    name: "Plase"
+  };
 
   $scope.shownGroup = null;
-  /*
-   * if given group is the selected group, deselect it
-   * else, select the given group
-   */
+
   $scope.toggleGroup = function(group) {
     if ($scope.isGroupShown(group)) {
       $scope.shownGroup = null;
@@ -87,7 +87,6 @@ app.controller('MedicamentCreateCtrl', function($scope,
   $scope.isGroupShown = function(group) {
     return $scope.shownGroup === group;
   };
-
 
   $scope.addMedicament = function (form) {
 

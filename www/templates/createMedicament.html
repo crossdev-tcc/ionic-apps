@@ -103,17 +103,30 @@
           <i class="icon ion-ios-arrow-forward" style="color: lightgray"></i>
         </label>
 
-        <!-- Local -->
-        <label class="item item-input item-select">
-          <div class="input-label assertive">
-            Local
-          </div>
-          <select>
-            <option>Caixa</option>
-            <option>Casa</option>
-            <option>Escritório</option>
-          </select>
+        <label class="item assertive"
+               ng-click="toggleGroup(groups[2])"
+               ng-class="{active: isGroupShown(groups[2])}">
+          Local
+          <span class="item-note calm"> {{ formData.place }} </span>
         </label>
+        <div class="item-accordion"
+             ng-show="isGroupShown(groups[2])">
+
+          <div class="row">
+            <div class="col col-80 col-center item-input-inset">
+              <select class="assertive item-input-wrapper"
+                      style=" height: 29px; padding-left: 4px; width: 100%; border:0"
+                      ng-model="formData.place"
+                      ng-change="toggleGroup(groups[2])">
+                <option>Caixa</option>
+                <option>Casa</option>
+                <option>Escritório</option>
+              </select>
+            </div>
+              <a class="col button button-icon icon ion-ios-plus-outline assertive"></a>
+            </div>
+          </div>
+        </div>
 
 
         <!-- Quantidade -->
@@ -181,6 +194,12 @@
             </div>
           </div>
         </div>
+
+        <!-- Preço -->
+        <label class="item item-input">
+          <span class="input-label">Preço</span>
+          <input type="text">
+        </label>
 
         <!-- Alarme -->
         <div class="item item-toggle assertive">
