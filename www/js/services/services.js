@@ -48,8 +48,44 @@ angular.module('minifarma.services', [])
   };
 })
 
+.factory('Medicaments', function($cordovaSQLite) {
+
+  var medicaments = [];
+
+  return {
+    all: function() {
+
+      $cordovaSQLite.execute(db, 'SELECT * FROM Medicament ORDER BY id DESC')
+        .then(
+          function(result) {
+            console.log("Medicaments loaded successful!");
+
+            for(var i = 0; i < result.rows.length; i++){
+              medicaments.push(result.rows.item(i));
+              console.log(result.rows.item(i).name);
+            }
+
+          },
+          function(error) {
+            $scope.statusMessage = "Error on loading: " + error.message;
+          }
+        );
+
+      return medicaments;
+    },
+    remove: function(medicamentId) {
+      $cordovaSQLite.execute(db, "DELETE FROM Medicament WHERE id=?", [medicamentId])
+        .then(function(res){
+            console.log("Deleted");
+          },
+          function(err){
+            console.log("Error");
+          });
+    }
+  };
+})
+
 .factory('Alertas', function() {
-  // Might use a resource here that returns a JSON array
 
   // Some fake testing data
   var alertas = [

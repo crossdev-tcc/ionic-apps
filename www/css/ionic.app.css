@@ -9807,6 +9807,11 @@ a.button {
 .list .item.item-accordion.ng-hide-remove {
   display: block !important; }
 
+.segmented-collapsed {
+  font-size: 13px;
+  line-height: 29px;
+  min-height: 31px; }
+
 form.ng-submitted label.has-error {
   border-bottom: 2px solid #CC0044; }
 
@@ -9838,9 +9843,3 @@ form .form-errors {
   font-size: 12px;
   font-weight: bold;
   border-bottom-width: 0px; }
-
-.segmented-collapsed {
-  font-size: 13px;
-  line-height: 29px;
-  min-height: 31px;
-}
