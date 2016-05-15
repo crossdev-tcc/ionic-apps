@@ -24,7 +24,7 @@
           <div class="col" style="display: flex; align-items: center; justify-content: center;" ng-click="addPicture()">
 
             <!-- Add Photo -->
-            <div class="calm" ng-show="!picture" style="height:45vw; display: flex; align-items: center;">
+            <div class="color-mfblue" ng-show="!picture" style="height:45vw; display: flex; align-items: center;">
               adicionar foto
             </div>
 
@@ -74,10 +74,10 @@
                ng-click=""
                ui-sref="categoryList">
             Categoria
-          <span class="item-note calm">
+          <span class="item-note color-mfblue">
             {{category.name}}
           </span>
-          <i class="icon ion-ios-arrow-forward" style="color: lightgray"></i>
+          <i class="icon ion-ios-arrow-forward" style="color: lightgray;  font-size: 22px"></i>
         </label>
 
         <!-- Intervalo -->
@@ -85,7 +85,7 @@
           <div class="input-label assertive">
             Intervalo
           </div>
-          <select>
+          <select class="color-mfblue">
             <option>1 hora</option>
             <option selected>2 horas</option>
             <option>3 hora(s)</option>
@@ -100,14 +100,16 @@
         <!-- Farmácia -->
         <label class="item item-icon-right assertive">
           Farmácia
-          <i class="icon ion-ios-arrow-forward" style="color: lightgray"></i>
+          <i class="icon ion-ios-arrow-forward" style="color: lightgray; font-size: 22px"></i>
         </label>
 
+
+        <!-- Local -->
         <label class="item assertive"
                ng-click="toggleGroup(groups[2])"
                ng-class="{active: isGroupShown(groups[2])}">
           Local
-          <span class="item-note calm"> {{ formData.place }} </span>
+          <span class="item-note color-mfblue"> {{ formData.place }} </span>
         </label>
         <div class="item-accordion"
              ng-show="isGroupShown(groups[2])">
@@ -134,7 +136,7 @@
                ng-click="toggleGroup(groups[0])"
                ng-class="{active: isGroupShown(groups[0])}">
           Quantidade
-          <span class="item-note calm"> {{ formData.quantity }} {{ formData.doseType }}</span>
+          <span class="item-note color-mfblue"> {{ formData.quantity }} {{ formData.doseType }}</span>
         </label>
         <div class="item-accordion"
              ng-show="isGroupShown(groups[0])">
@@ -167,7 +169,7 @@
                ng-click="toggleGroup(groups[1])"
                ng-class="{active: isGroupShown(groups[1])}">
           Dose
-          <span class="item-note calm"> {{ formData.dose }} {{ formData.doseType }}</span>
+          <span class="item-note color-mfblue"> {{ formData.dose }} {{ formData.doseType }}</span>
         </label>
         <div class="item-accordion"
              ng-show="isGroupShown(groups[1])">
@@ -197,13 +199,16 @@
 
         <!-- Preço -->
         <label class="item item-input">
-          <span class="input-label">Preço</span>
-          <input type="text">
+          <div class="row" style="padding-left: 0px">
+            <span class="col col-50 input-label assertive" style="padding-left: 0px; ">Preço</span>
+            <span class="col color-mfblue" style="text-align: right; ">R$</span>
+            <input ng-model="formData.price" class="col col-30 color-mfblue" type="text" style="text-align: right;">
+          </div>
         </label>
 
-        <!-- Alarme -->
+        <!-- Alert -->
         <div class="item item-toggle assertive">
-          Alarme
+          Alerta
           <label class="toggle toggle-assertive">
             <input type="checkbox">
             <div class="track">
@@ -212,14 +217,19 @@
           </label>
         </div>
 
-        <div class="item item-input-inset">
-          <label class="item-input-wrapper">
-            <input type="text" placeholder="Email">
-          </label>
-          <button class="button button-small">
-            Submit
-          </button>
-        </div>
+        <!-- Receipt -->
+        <label class="item item-icon-right assertive">
+          Receita
+          <i class="icon ion-checkmark assertive" style="font-size: 16px"></i>
+        </label>
+
+        <!-- Notes -->
+        <label class="item item-input">
+            <span class="input-label assertive" style="width: 20%">Notas</span>
+            <label class="item-input" style="width: 75%">
+              <textarea class="color-mfblue" placeholder="Informações gerais" style="min-height: 100px;"></textarea>
+            </label>
+        </label>
 
       </ion-list>
 

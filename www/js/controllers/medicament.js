@@ -3,13 +3,15 @@ var app = angular.module('minifarma.controllers.medicament', []);
 /**********************************
  *  MedicamentListCtrl
  **********************************/
-app.controller('MedicamentListCtrl', function($scope, Remedios) {
+app.controller('MedicamentListCtrl', function($scope, Medicaments, $cordovaSQLite) {
+
+  console.log("MedicamentListCtrl");
 
   $scope.isAndroid = ionic.Platform.isAndroid();
 
   $scope.remedios =  {
     "filter" : false,
-    "remedios": Remedios.all()
+    "remedios": Medicaments.all()
   };
 
   $scope.remove = function(remedio) {
@@ -62,6 +64,8 @@ app.controller('MedicamentCreateCtrl', function($scope,
                                                 $ionicActionSheet,
                                                 $cordovaSQLite,
                                                 Category) {
+  console.log("MedicamentCreateCtrl");
+
   $scope.category =  Category;
 
   $scope.groups = [];
@@ -184,6 +188,8 @@ app.controller('MedicamentCreateCtrl', function($scope,
     $state.go('tab.remedio');
   };
 
+  // DATABASE FUNCTIONS
+
   $scope.insert = function(medicamentName) {
 
     $cordovaSQLite.execute(db, 'INSERT INTO Medicament (name) VALUES (?)', [medicamentName])
@@ -194,6 +200,6 @@ app.controller('MedicamentCreateCtrl', function($scope,
         console.log("Error on insert: " + error.message);
       })
 
-  }
+  };
 
 });
