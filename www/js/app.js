@@ -102,6 +102,13 @@ app.config(function($stateProvider, $urlRouterProvider, ionicDatePickerProvider)
     templateUrl: "templates/categoryList.html"
   })
 
+  .state('medicamentsList', {
+    url: "/medicamentsList",
+    cache: false,
+    controller: 'MedicamentAlertListCtrl',
+    templateUrl: "templates/medicamentsList.html"
+  })
+
   .state('createAlert', {
     url: "/createAlert",
     cache: false,
