@@ -3,19 +3,24 @@ var app = angular.module('minifarma.controllers.medicament', []);
 /**********************************
  *  MedicamentListCtrl
  **********************************/
-app.controller('MedicamentListCtrl', function($scope, Medicaments, $cordovaSQLite) {
+app.controller('MedicamentListCtrl', function($scope, Medicaments) {
 
   console.log("MedicamentListCtrl");
 
   $scope.isAndroid = ionic.Platform.isAndroid();
 
   $scope.remedios =  {
-    "filter" : false,
+    "filter" : 0,
     "remedios": Medicaments.all()
   };
 
   $scope.remove = function(remedio) {
     Remedios.remove(remedio);
+  };
+
+  $scope.testeBtn = function() {
+    console.log("Listar medicamentos: ");
+    console.log($scope.remedios.remedios);
   };
 
 });
@@ -95,6 +100,8 @@ app.controller('MedicamentCreateCtrl', function($scope,
   $scope.addMedicament = function (form) {
 
     console.log("MedicamentCreateCtrl::addMedicament");
+
+    console.log(form.doseType);
 
     if(form.$valid) {
       console.log(form.name.$viewValue);
@@ -192,7 +199,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
 
   $scope.insert = function(medicamentName) {
 
-    $cordovaSQLite.execute(db, 'INSERT INTO Medicament (name) VALUES (?)', [medicamentName])
+    $cordovaSQLite.execute(db, 'INSERT INTO Medicament (name, expired) VALUES (?, 1)', [medicamentName])
       .then(function(result) {
         console.log("Message inserted successful, cheers!");
         console.log('resultSet.insertId: ' + result.insertId);

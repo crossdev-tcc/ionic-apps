@@ -24,10 +24,15 @@ app.run(function($ionicPlatform, $cordovaSQLite) {
     }
 
     db = $cordovaSQLite.openDB({name: 'my.db', location: 'default'});
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Medicament (id integer primary key, name text)");
+    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Medicament (id integer primary key, name text, expired int)");
 
   });
-})
+
+  window.onerror = function (errorMsg, url, lineNumber) {
+    alert('Error: ' + errorMsg + ' Script: ' + url + ' Line: ' + lineNumber);
+  }
+
+});
 
 app.config(function($stateProvider, $urlRouterProvider) {
 

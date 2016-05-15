@@ -48,29 +48,30 @@ angular.module('minifarma.services', [])
   };
 })
 
-.factory('Medicaments', function($cordovaSQLite) {
+.factory('Medicaments', function($cordovaSQLite, $ionicPlatform) {
 
   var medicaments = [];
 
   return {
     all: function() {
 
-      $cordovaSQLite.execute(db, 'SELECT * FROM Medicament ORDER BY id DESC')
-        .then(
-          function(result) {
-            console.log("Medicaments loaded successful!");
+      $ionicPlatform.ready(function () {
+        $cordovaSQLite.execute(db, 'SELECT * FROM Medicament ORDER BY id DESC')
+          .then(
+            function (result) {
+              console.log("Medicaments loaded successful!");
 
-            for(var i = 0; i < result.rows.length; i++){
-              medicaments.push(result.rows.item(i));
-              console.log(result.rows.item(i).name);
+              for (var i = 0; i < result.rows.length; i++) {
+                medicaments.push(result.rows.item(i));
+                console.log(result.rows.item(i).name);
+              }
+
+            },
+            function (error) {
+              $scope.statusMessage = "Error on loading: " + error.message;
             }
-
-          },
-          function(error) {
-            $scope.statusMessage = "Error on loading: " + error.message;
-          }
-        );
-
+          );
+      });
       return medicaments;
     },
     remove: function(medicamentId) {
