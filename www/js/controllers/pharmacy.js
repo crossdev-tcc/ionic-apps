@@ -18,7 +18,7 @@ app.controller('PharmacyCreateCtrl', function($scope, $state, Pharmacy) {
   $scope.marker = null;
   $scope.pharmacyLat = null;
   $scope.pharmacyLon = null;
-  $scope.pharmacy =  Pharmacy;
+  $scope.pharmacy = Pharmacy;
 
   $scope.addPharmacy = function (form) {
     console.log("PharmacyCreateCtrl::addPharmacy");

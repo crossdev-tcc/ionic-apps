@@ -3,6 +3,7 @@ var app = angular.module('minifarma', [
   'ngMessages',
   'ngCordova',
   'ngMap',
+  'ionic-datepicker',
   'minifarma.controllers',
   'minifarma.services'
 ]);
@@ -34,7 +35,26 @@ app.run(function($ionicPlatform, $cordovaSQLite) {
 
 });
 
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider, ionicDatePickerProvider) {
+
+  var datePickerObj = {
+    inputDate: new Date(),
+    setLabel: 'OK',
+    todayLabel: 'Hoje',
+    closeLabel: 'Fechar',
+    mondayFirst: true,
+    weeksList: ["D", "S", "T", "Q", "Q", "S", "S"],
+    monthsList: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto","Setembro", "Outubro", "Novembro", "Dezembro"],
+    templateType: 'popup',
+    from: new Date(2010, 1, 1),
+    to: new Date(2025, 1, 1),
+    showTodayButton: true,
+    dateFormat: 'dd MM yyyy',
+    closeOnSelect: false,
+    disableWeekdays: [6]
+  };
+
+  ionicDatePickerProvider.configDatePicker(datePickerObj);
 
   $stateProvider
 
@@ -85,6 +105,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
     cache: false,
     controller: 'MedicamentCategoryListCtrl',
     templateUrl: "templates/categoryList.html"
+  })
+
+  .state('medicamentsList', {
+    url: "/medicamentsList",
+    cache: false,
+    controller: 'MedicamentAlertListCtrl',
+    templateUrl: "templates/medicamentsList.html"
   })
 
   .state('createAlert', {
