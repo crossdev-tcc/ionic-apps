@@ -3,26 +3,23 @@ var app = angular.module('minifarma.controllers.medicament', []);
 /**********************************
  *  MedicamentListCtrl
  **********************************/
-app.controller('MedicamentListCtrl', function($scope, Medicaments) {
+app.controller('MedicamentListCtrl', function($scope, Medicament) {
 
   console.log("MedicamentListCtrl");
 
   $scope.isAndroid = ionic.Platform.isAndroid();
 
-  $scope.remedios =  {
-    "filter" : 0,
-    "remedios": Medicaments.all()
-  };
+
+  Medicament.all().then(function(remediosResult){
+    $scope.remedios =  {
+      "filter" : 0,
+      "remedios": remediosResult
+    };
+  });
 
   $scope.remove = function(remedio) {
-    Remedios.remove(remedio);
+    Medicament.remove(remedio);
   };
-
-  $scope.testeBtn = function() {
-    console.log("Listar medicamentos: ");
-    console.log($scope.remedios.remedios);
-  };
-
 });
 
 app.factory('Category', function() {
@@ -68,6 +65,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
                                                 $cordovaCamera,
                                                 $ionicActionSheet,
                                                 $cordovaSQLite,
+                                                Medicament,
                                                 Category) {
   console.log("MedicamentCreateCtrl");
 
@@ -105,7 +103,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
 
     if(form.$valid) {
       console.log(form.name.$viewValue);
-      $scope.insert(form.name.$viewValue);
+      Medicament.insert(form.name.$viewValue);
     } else {
       console.log("Invalid form");
     }

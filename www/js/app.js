@@ -8,9 +8,7 @@ var app = angular.module('minifarma', [
   'minifarma.services'
 ]);
 
-var db;
-
-app.run(function($ionicPlatform, $cordovaSQLite) {
+app.run(function($ionicPlatform, DB) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -24,8 +22,7 @@ app.run(function($ionicPlatform, $cordovaSQLite) {
       StatusBar.styleDefault();
     }
 
-    db = $cordovaSQLite.openDB({name: 'my.db', location: 'default'});
-    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS Medicament (id integer primary key, name text, expired int)");
+    DB.init();
 
   });
 

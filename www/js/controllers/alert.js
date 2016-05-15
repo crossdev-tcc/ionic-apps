@@ -85,7 +85,9 @@ app.factory('Medicament', function() {
 
 app.controller('MedicamentAlertListCtrl', function($scope, $ionicHistory, Medicaments, Medicament) {
 
-  $scope.medicaments = Medicaments.all();
+  Medicament.all().then(function(remediosResult){
+    $scope.medicaments = remediosResult
+  });
   $scope.selectedMedicament = Medicament;
   $scope.shouldShowDelete = false;
 
