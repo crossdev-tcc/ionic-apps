@@ -14,6 +14,7 @@ app.factory('Alert', function() {
 /**********************************
  *  AlertListCtrl
  **********************************/
+
 app.controller('AlertListCtrl', function($scope, Alertas) {
 
   $scope.isAndroid = ionic.Platform.isAndroid();
@@ -31,9 +32,10 @@ app.controller('AlertListCtrl', function($scope, Alertas) {
 /**********************************
  *  AlertCreateCtrl
  **********************************/
-app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, Alert) {
+app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, Alert, Medicament) {
 
   $scope.alert = Alert;
+  $scope.medicament = Medicament;
 
   var dateSelecter = {
     callback: function (val) {
@@ -54,8 +56,8 @@ app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, Aler
       $scope.alert.durationNumber = form.duration.$viewValue;
       $scope.alert.durationUnity = form.durationUnity;
       $scope.alert.interval = form.interval.$viewValue;
+      $scope.alert.medicamentId = $scope.medicament.id;
       $scope.alert.active = true;
-      // $scope.alert.medicamentId = form.medicamentId.$viewValue;
       console.log($scope.alert);
     } else {
       console.log("Invalid form");
@@ -64,6 +66,33 @@ app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, Aler
 
   $scope.cancelCreate = function () {
     $state.go('tab.alerta');
+  };
+
+});
+
+
+app.factory('Medicament', function() {
+
+  medicament = {};
+  medicament.name = '';
+  medicament.id = 0;
+  return medicament;
+});
+
+/**********************************
+ *  MedicamentAlertListCtrl
+ **********************************/
+
+app.controller('MedicamentAlertListCtrl', function($scope, $ionicHistory, Medicaments, Medicament) {
+
+  $scope.medicaments = Medicaments.all();
+  $scope.selectedMedicament = Medicament;
+  $scope.shouldShowDelete = false;
+
+  $scope.select = function(medicamentName, medicamentId) {
+    $scope.selectedMedicament.name = medicamentName;
+    $scope.selectedMedicament.id = medicamentId;
+    $ionicHistory.goBack();
   };
 
 });
