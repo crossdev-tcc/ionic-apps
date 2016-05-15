@@ -79,7 +79,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
     name: "Dose"
   };
   $scope.groups[2] = {
-    name: "Plase"
+    name: "Place"
   };
 
   $scope.shownGroup = null;

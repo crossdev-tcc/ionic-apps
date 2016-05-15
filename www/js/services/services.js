@@ -113,7 +113,7 @@ angular.module('minifarma.services', [])
     };
 
     self.insert = function(medicamentName) {
-      var parameters = [medicamentName, 1];
+      var parameters = [medicamentName, 0];
       return DB.query('INSERT INTO Medicament (name, expired) VALUES (?, ?)', parameters);
     };
 

@@ -83,7 +83,7 @@ app.factory('Medicament', function() {
  *  MedicamentAlertListCtrl
  **********************************/
 
-app.controller('MedicamentAlertListCtrl', function($scope, $ionicHistory, Medicaments, Medicament) {
+app.controller('MedicamentAlertListCtrl', function($scope, $ionicHistory, Medicament) {
 
   Medicament.all().then(function(remediosResult){
     $scope.medicaments = remediosResult
