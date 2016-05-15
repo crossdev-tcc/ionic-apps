@@ -2,11 +2,11 @@ var app = angular.module('minifarma.controllers.alert', []);
 
 app.factory('Alert', function() {
   alert = {};
-  alert.startDate = '';
-  alert.medicamentId = '';
-  alert.interval = '';
-  alert.durationNumber = '';
-  alert.durationUnity = '';
+  alert.startDate = null;
+  alert.medicamentId = null;
+  alert.interval = null;
+  alert.durationNumber = null;
+  alert.durationUnity = null;
   alert.active = true;
   return alert;
 });
@@ -27,7 +27,6 @@ app.controller('AlertListCtrl', function($scope, Alertas) {
     Alertas.remove(alerta);
   };
 });
-
 
 /**********************************
  *  AlertCreateCtrl
@@ -52,7 +51,12 @@ app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, Aler
     console.log("AlertCreateCtrl::addAlert");
 
     if(form.$valid) {
-
+      $scope.alert.durationNumber = form.duration.$viewValue;
+      $scope.alert.durationUnity = form.durationUnity;
+      $scope.alert.interval = form.interval.$viewValue;
+      $scope.alert.active = true;
+      // $scope.alert.medicamentId = form.medicamentId.$viewValue;
+      console.log($scope.alert);
     } else {
       console.log("Invalid form");
     }
