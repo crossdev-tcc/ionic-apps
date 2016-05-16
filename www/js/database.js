@@ -8,7 +8,7 @@ app.constant('DB_CONFIG', {
         columns: [
           {name: 'id', type: 'integer primary key'},
           {name: 'name', type: 'text'},
-          {name: 'expired', type: 'int'}
+          {name: 'expired', type: 'integer'}
         ]
       }
     ]

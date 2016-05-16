@@ -8,18 +8,16 @@ app.controller('MedicamentListCtrl', function($scope, Medicament) {
   console.log("MedicamentListCtrl");
 
   $scope.isAndroid = ionic.Platform.isAndroid();
-
-
+  
   Medicament.all().then(function(remediosResult){
-    $scope.remedios =  {
-      "filter" : 0,
-      "remedios": remediosResult
-    };
+    $scope.remedios = remediosResult
   });
 
   $scope.remove = function(remedio) {
     Medicament.remove(remedio);
   };
+
+  $scope.filterValue = 0;
 });
 
 app.factory('Category', function() {
