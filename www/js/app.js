@@ -5,7 +5,8 @@ var app = angular.module('minifarma', [
   'ngMap',
   'ionic-datepicker',
   'minifarma.controllers',
-  'minifarma.services'
+  'minifarma.services',
+  'minifarma.database'
 ]);
 
 app.run(function($ionicPlatform, DB) {
