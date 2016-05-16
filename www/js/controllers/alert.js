@@ -1,5 +1,9 @@
 var app = angular.module('minifarma.controllers.alert', []);
 
+/**********************************
+ *  Factories
+ **********************************/
+
 app.factory('Alert', function() {
   alert = {};
   alert.startDate = null;
@@ -9,6 +13,14 @@ app.factory('Alert', function() {
   alert.durationUnity = null;
   alert.active = true;
   return alert;
+});
+
+app.factory('Medicament', function() {
+
+  medicament = {};
+  medicament.name = '';
+  medicament.id = 0;
+  return medicament;
 });
 
 /**********************************
@@ -68,15 +80,6 @@ app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, Aler
     $state.go('tab.alerta');
   };
 
-});
-
-
-app.factory('Medicament', function() {
-
-  medicament = {};
-  medicament.name = '';
-  medicament.id = 0;
-  return medicament;
 });
 
 /**********************************
