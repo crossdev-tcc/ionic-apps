@@ -72,6 +72,7 @@ app.config(function($stateProvider, $urlRouterProvider, ionicDatePickerProvider)
 
   .state('tab.remedio', {
     url: '/remedios',
+    cache: false,
     views: {
       'tab-remedio': {
         templateUrl: 'templates/tabs/tab-remedio.html',
@@ -127,4 +128,8 @@ app.config(function($stateProvider, $urlRouterProvider, ionicDatePickerProvider)
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/remedios');
 
+});
+
+app.config(function($ionicConfigProvider) {
+  $ionicConfigProvider.backButton.text('Voltar').icon('ion-chevron-left');
 });
