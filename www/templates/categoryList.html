@@ -8,12 +8,14 @@
   </ion-nav-buttons>
 
   <ion-content>
-    <ion-list show-delete="shouldShowDelete">
+    <ion-list class="color-mfblue" show-delete="shouldShowDelete">
       <!--{{selectedCategory.name}}-->
-      <ion-item ng-repeat="category in categories" ng-click="select(category.name)">
+      <ion-item ng-repeat="category in categories"
+                ng-click="select(category.name)">
 
         <h2>{{category.name}}</h2>
-        <ion-option-button class="button-assertive" style="background-color:#ef473a"
+        <ion-option-button class="button-assertive"
+                           style="background-color:#ef473a"
                            ng-click="share(item)">
           Apagar
         </ion-option-button>
