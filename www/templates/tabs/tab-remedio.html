@@ -2,10 +2,10 @@
 
   <div class="platform-android bar-custom bar bar-subheader">
     <div class="button-bar">
-      <a class="button button-outline button-assertive" ng-click="remedios.filter=0"
-         ng-class="{active: remedios.filter == 0}">Válidos</a>
-      <a class="button button-outline button-assertive" ng-click="remedios.filter=1"
-         ng-class="{active: remedios.filter == 1}">Vencidos</a>
+      <a class="button button-outline button-assertive" ng-click="filterValue = 0"
+         ng-class="{active: filterValue == 0}">Válidos</a>
+      <a class="button button-outline button-assertive" ng-click="filterValue = 1"
+         ng-class="{active: filterValue == 1}">Vencidos</a>
     </div>
   </div>
 
@@ -15,7 +15,7 @@
 
   <ion-content class="has-header has-subheader">
     <ion-list>
-      <ion-item class=" item-thumbnail-left item-icon-right" ng-repeat="remedio in remedios.remedios | filter : remedios.filter" type="item-text-wrap" href="#/tab/remedios/{{remedio.id}}">
+      <ion-item class=" item-thumbnail-left item-icon-right" ng-repeat="remedio in remedios | filter:{expired:filterValue}:true" type="item-text-wrap" href="#/tab/remedios/{{remedio.id}}">
         <img ng-src="{{remedio.face}}">
         <h2 class="item-text-center-vertical color-mfblue">{{remedio.name}}</h2>
         <p class="color-mfblue">{{remedio.expirationDate}}</p>

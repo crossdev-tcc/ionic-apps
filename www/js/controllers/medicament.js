@@ -16,15 +16,20 @@ app.controller('MedicamentListCtrl', function($scope, MedicamentService) {
   $scope.isAndroid = ionic.Platform.isAndroid();
 
   MedicamentService.all().then(function(remediosResult){
-    $scope.remedios =  {
-      "filter" : 0,
-      "remedios": remediosResult
-    };
+    //$scope.remedios =  {
+    //  "filter" : 0,
+    //  "remedios": remediosResult
+    //};
+  
+  //Medicament.all().then(function(remediosResult){
+    $scope.remedios = remediosResult
   });
 
   $scope.remove = function(remedio) {
     MedicamentService.remove(remedio);
   };
+
+  $scope.filterValue = 0;
 });
 
 /**********************************
