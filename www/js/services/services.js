@@ -62,6 +62,9 @@ angular.module('minifarma.services', [])
       }
       var query = 'CREATE TABLE IF NOT EXISTS Medicament (id integer primary key, name text, expired int)';
       self.query(query);
+
+      query = 'CREATE TABLE IF NOT EXISTS Alert (id integer primary key, startDate date, interval int, durationNumber int, durationUnity int, active int, medicamentId int)';
+      self.query(query);
     };
 
     self.query = function (query, bindings) {
@@ -95,7 +98,32 @@ angular.module('minifarma.services', [])
     return self;
   })
 
-  .factory('Medicament', function (DB, $cordovaSQLite) {
+  .factory('AlertService', function(DB, $cordovaSQLite) {
+    var self = this;
+
+    self.all = function () {
+      return DB.query('SELECT * FROM Alert')
+        .then(function (result) {
+          return DB.fetchAll(result);
+      });
+    };
+
+    self.insert = function(alert) {
+      var parameters = [
+        alert.startDate,
+        alert.interval,
+        alert.durationNumber,
+        alert.durationUnity,
+        alert.active,
+        alert.medicamentId];
+
+      return DB.query('INSERT INTO Alert (startDate, interval, durationNumber, durationUnity, active, medicamentId) VALUES (?,?,?,?,?,?)', parameters);
+    };
+
+    return self;
+  })
+
+  .factory('MedicamentService', function (DB, $cordovaSQLite) {
     var self = this;
 
     self.all = function () {
