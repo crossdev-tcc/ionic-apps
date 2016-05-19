@@ -1,7 +1,17 @@
 var app = angular.module('minifarma.controllers.medicament', []);
 
+/**********************************
+ *  Factories
+ **********************************/
+
+app.factory('Medicament', function() {
+  var medicament = {};
+  medicament.expirationDate = null;
+  return medicament;
+});
+
 app.factory('Category', function() {
-  category = {};
+  var category = {};
   category.name = '';
   return category;
 });
@@ -20,8 +30,8 @@ app.controller('MedicamentListCtrl', function($scope, MedicamentService) {
     //  "filter" : 0,
     //  "remedios": remediosResult
     //};
-  
-  //Medicament.all().then(function(remediosResult){
+
+    //Medicament.all().then(function(remediosResult){
     $scope.remedios = remediosResult
   });
 
@@ -69,9 +79,12 @@ app.controller('MedicamentCreateCtrl', function($scope,
                                                 $ionicActionSheet,
                                                 $cordovaSQLite,
                                                 MedicamentService,
-                                                Category) {
+                                                Medicament,
+                                                Category,
+                                                ionicDatePicker) {
   console.log("MedicamentCreateCtrl");
 
+  $scope.medicament = Medicament;
   $scope.category =  Category;
 
   $scope.groups = [];
@@ -108,11 +121,27 @@ app.controller('MedicamentCreateCtrl', function($scope,
     if(form.$valid) {
       console.log(form.name.$viewValue);
       MedicamentService.insert(form.name.$viewValue);
+      $state.go('tab.remedio');
     } else {
       console.log("Invalid form");
     }
   };
 
+
+  /**  DATE PICKER */
+  var dateSelecter = {
+    callback: function (val) {
+      $scope.medicament.expirationDate = new Date(val);
+      console.log('Return value from the datepicker popup is : ' + $scope.medicament.expirationDate );
+    }
+  };
+
+  $scope.openDatePicker = function(){
+    ionicDatePicker.openDatePicker(dateSelecter);
+  };
+
+
+  /** PICTURE */
   $scope.addPicture = function () {
     console.log("Let's add a picture!");
 

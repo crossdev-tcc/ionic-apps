@@ -5,7 +5,7 @@ var app = angular.module('minifarma.controllers.alert', []);
  **********************************/
 
 app.factory('Alert', function() {
-  alert = {};
+  var alert = {};
   alert.startDate = null;
   alert.medicamentId = null;
   alert.interval = null;
@@ -17,7 +17,7 @@ app.factory('Alert', function() {
 
 app.factory('Medicament', function() {
 
-  medicament = {};
+  var medicament = {};
   medicament.name = '';
   medicament.id = 0;
   return medicament;
@@ -51,7 +51,7 @@ app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, Aler
 
   var dateSelecter = {
     callback: function (val) {
-      $scope.alert.startDate = new Date(val)
+      $scope.alert.startDate = new Date(val);
       console.log('Return value from the datepicker popup is : ' + $scope.alert.startDate);
     }
   };

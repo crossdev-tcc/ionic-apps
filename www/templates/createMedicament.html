@@ -11,7 +11,7 @@
   </ion-nav-buttons>
 
   <ion-content>
-     <!--Form with floating labels-->
+    <!--Form with floating labels-->
     <form name="createMedicamentForm"
           novalidate=""
           ng-submit="addMedicament(createMedicamentForm)"
@@ -32,7 +32,6 @@
             <div class="" ng-show="picture">
               <div class="picture">
                 <img ng-src="data:image/jpeg;base64,{{picture}}" alt="" style="height:45vw;"/>
-                <!--<img src="http://www.urbansamurai.com/wp-content/uploads/2012/03/medicine_pills.jpg" style="height:45vw;"/>-->
               </div >
             </div>
           </div>
@@ -62,10 +61,22 @@
                      placeholder="Data de Validade"
                      name="expirationDate"
                      ng-model="formData.expirationDate"
-                     ng-required="true"
-                     ng-minlength="2"
-                     class="text-center">
-            </label >
+                     class="text-center"
+                     ng-click="openDatePicker()"
+                     ng-value=" medicament.expirationDate | date:'dd/MM/yyyy' ">
+            </label>
+
+            <label class="item"
+                   ng-click="openDatePicker()"
+                   name="startDate"
+                   ng-model="formData.startDate"
+                   style="text-align: center; font-size: 14px; color: #f00">
+              {{ medicament.expirationDate ? "": "Data de Validade" }}
+              <span class="color-mfblue" ng-model="formData.expirationDate">
+                {{ medicament.expirationDate | date:'dd/MM/yyyy' }}
+              </span>
+            </label>
+
           </div>
         </div>
 
@@ -73,7 +84,7 @@
         <label class="item item-icon-right assertive"
                ng-click=""
                ui-sref="categoryList">
-            Categoria
+          Categoria
           <span class="item-note color-mfblue">
             {{category.name}}
           </span>
@@ -125,9 +136,9 @@
                 <option>Escritório</option>
               </select>
             </div>
-              <a class="col button button-icon icon ion-ios-plus-outline assertive"></a>
-            </div>
+            <a class="col button button-icon icon ion-ios-plus-outline assertive"></a>
           </div>
+        </div>
         </div>
 
 
@@ -225,10 +236,10 @@
 
         <!-- Notes -->
         <label class="item item-input">
-            <span class="input-label assertive" style="width: 20%">Notas</span>
-            <label class="item-input" style="width: 75%">
-              <textarea class="color-mfblue" placeholder="Informações gerais" style="min-height: 100px;"></textarea>
-            </label>
+          <span class="input-label assertive" style="width: 20%">Notas</span>
+          <label class="item-input" style="width: 75%">
+            <textarea class="color-mfblue" placeholder="Informações gerais" style="min-height: 100px;"></textarea>
+          </label>
         </label>
 
       </ion-list>

@@ -63,7 +63,7 @@ angular.module('minifarma.services', [])
         console.log('websql');
         self.db = window.openDatabase(DB_CONFIG.name, "1.0", "MiniFarma", -1);
       }
-      
+
       //var query = 'CREATE TABLE IF NOT EXISTS Medicament (id integer primary key, name text, expired int)';
       //self.query(query);
 
@@ -77,7 +77,18 @@ angular.module('minifarma.services', [])
           columns.push(column.name + ' ' + column.type);
         });
 
-        var query = 'CREATE TABLE IF NOT EXISTS ' + table.name + ' (' + columns.join(',') + ')';
+        var foreigners = [];
+        angular.forEach(table.foreign, function(foreign) {
+          foreigners.push('FOREIGN KEY(' + foreign.key + ') REFERENCES ' + foreign.references);
+        });
+
+        var query;
+        if (foreigners.length > 0){
+          query = 'CREATE TABLE IF NOT EXISTS ' + table.name + ' (' + columns.join(',') + ', ' + foreigners.join(',') + ')';
+        } else {
+          query = 'CREATE TABLE IF NOT EXISTS ' + table.name + ' (' + columns.join(',') + ')';
+        }
+        console.log(query);
         self.query(query);
         console.log('Table ' + table.name + ' initialized');
       });
@@ -114,7 +125,6 @@ angular.module('minifarma.services', [])
     return self;
   })
 
-<<<<<<< HEAD
   .factory('AlertService', function(DB, $cordovaSQLite) {
     var self = this;
 
@@ -141,9 +151,7 @@ angular.module('minifarma.services', [])
   })
 
   .factory('MedicamentService', function (DB, $cordovaSQLite) {
-=======
-  .factory('Medicament', function (DB) {
->>>>>>> 0093bfa1d2f0b3fede8da198c22207485f74efab
+
     var self = this;
 
     self.all = function () {
