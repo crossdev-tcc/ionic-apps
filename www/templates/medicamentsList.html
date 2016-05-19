@@ -5,10 +5,10 @@
   </ion-nav-buttons>
 
   <ion-content>
-    <ion-list class="color-mfblue" show-delete="shouldShowDelete">
+    <ion-list show-delete="shouldShowDelete">
       <ion-item ng-repeat="medicament in medicaments"
                 ng-click="select(medicament.name, medicament.id)">
-        <h2 >{{medicament.name}}</h2>
+        <h2 class="color-mfblue">{{medicament.name}}</h2>
         <ion-option-button class="button-assertive"
                            style="background-color:#ef473a"
                            ng-click="share(item)">
