@@ -44,7 +44,7 @@ app.controller('AlertListCtrl', function($scope, Alertas) {
 /**********************************
  *  AlertCreateCtrl
  **********************************/
-app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, Alert, Medicament) {
+app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, Alert, Medicament, AlertService) {
 
   $scope.alert = Alert;
   $scope.medicament = Medicament;
@@ -71,6 +71,7 @@ app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, Aler
       $scope.alert.medicamentId = $scope.medicament.id;
       $scope.alert.active = true;
       console.log($scope.alert);
+      // AlertService.insert($scope.alert);
     } else {
       console.log("Invalid form");
     }
@@ -86,11 +87,13 @@ app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, Aler
  *  MedicamentAlertListCtrl
  **********************************/
 
-app.controller('MedicamentAlertListCtrl', function($scope, $ionicHistory, Medicament, $ionicConfig) {
+app.controller('MedicamentAlertListCtrl', function($scope, $ionicHistory, Medicament,
+                                                                          MedicamentService,
+                                                                          $ionicConfig) {
 
   $ionicConfig.backButton.text("Alerta");
 
-  Medicament.all().then(function(remediosResult){
+  MedicamentService.all().then(function(remediosResult){
     $scope.medicaments = remediosResult
   });
   $scope.selectedMedicament = Medicament;

@@ -1,16 +1,21 @@
 var app = angular.module('minifarma.controllers.medicament', []);
 
+app.factory('Category', function() {
+  category = {};
+  category.name = '';
+  return category;
+});
+
 /**********************************
  *  MedicamentListCtrl
  **********************************/
-app.controller('MedicamentListCtrl', function($scope, Medicament) {
+app.controller('MedicamentListCtrl', function($scope, MedicamentService) {
 
   console.log("MedicamentListCtrl");
 
   $scope.isAndroid = ionic.Platform.isAndroid();
 
-
-  Medicament.all().then(function(remediosResult){
+  MedicamentService.all().then(function(remediosResult){
     $scope.remedios =  {
       "filter" : 0,
       "remedios": remediosResult
@@ -18,15 +23,8 @@ app.controller('MedicamentListCtrl', function($scope, Medicament) {
   });
 
   $scope.remove = function(remedio) {
-    Medicament.remove(remedio);
+    MedicamentService.remove(remedio);
   };
-});
-
-app.factory('Category', function() {
-
-  category = {};
-  category.name = '';
-  return category;
 });
 
 /**********************************
@@ -65,7 +63,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
                                                 $cordovaCamera,
                                                 $ionicActionSheet,
                                                 $cordovaSQLite,
-                                                Medicament,
+                                                MedicamentService,
                                                 Category) {
   console.log("MedicamentCreateCtrl");
 
@@ -91,6 +89,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
       $scope.shownGroup = group;
     }
   };
+
   $scope.isGroupShown = function(group) {
     return $scope.shownGroup === group;
   };
@@ -103,7 +102,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
 
     if(form.$valid) {
       console.log(form.name.$viewValue);
-      Medicament.insert(form.name.$viewValue);
+      MedicamentService.insert(form.name.$viewValue);
     } else {
       console.log("Invalid form");
     }
@@ -196,7 +195,6 @@ app.controller('MedicamentCreateCtrl', function($scope,
   // DATABASE FUNCTIONS
 
   $scope.insert = function(medicamentName) {
-
     $cordovaSQLite.execute(db, 'INSERT INTO Medicament (name, expired) VALUES (?, 1)', [medicamentName])
       .then(function(result) {
         console.log("Message inserted successful, cheers!");
