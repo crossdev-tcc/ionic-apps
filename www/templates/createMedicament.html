@@ -21,6 +21,7 @@
       <ion-list >
 
         <div class="row row-center">
+          <!--Photo-->
           <div class="col" style="display: flex; align-items: center; justify-content: center;" ng-click="addMedicamentPicture()">
 
             <!-- Add Photo -->
@@ -35,6 +36,8 @@
               </div >
             </div>
           </div>
+
+          <!--Name and Expiration Date-->
           <div class="col">
             <!-- Medicament Name -->
             <label class="item item-input item-stacked-label"
@@ -61,7 +64,8 @@
               <input type="text"
                      placeholder="Data de Validade"
                      name="expirationDate"
-                     ng-model="medicament.expirationDate | date:'dd/MM/yyyy'"
+                     ng-model="medicament.expirationDate"
+                     formatted-date format="'dd/MM/yyyy'"
                      class="text-center color-mfblue"
                      ng-click="openDatePicker()">
             </label>
@@ -103,7 +107,6 @@
           <i class="icon ion-ios-arrow-forward" style="color: lightgray; font-size: 22px"></i>
         </label>
 
-
         <!-- Local -->
         <label class="item assertive"
                ng-click="toggleGroup(groups[2])"
@@ -129,7 +132,6 @@
           </div>
         </div>
         </div>
-
 
         <!-- Quantidade -->
         <label class="item assertive"
