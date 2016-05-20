@@ -49,8 +49,7 @@ app.config(function($stateProvider, $urlRouterProvider, ionicDatePickerProvider,
     to: new Date(2025, 1, 1),
     showTodayButton: true,
     dateFormat: 'dd MM yyyy',
-    closeOnSelect: false,
-    disableWeekdays: [6]
+    closeOnSelect: false
   };
 
   ionicDatePickerProvider.configDatePicker(datePickerObj);

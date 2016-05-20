@@ -38,14 +38,15 @@
           <div class="col">
             <!-- Medicament Name -->
             <label class="item item-input item-stacked-label"
-                   ng-class="{'has-error':createMedicamentForm.name.$invalid}" >
+                   ng-class="{'has-error':createMedicamentForm.name.$invalid}"
+                   style="padding: 6px 0 5px 10px">
               <input type="text"
                      placeholder="Nome"
                      name="name"
                      ng-model="formData.name"
                      ng-required="true"
                      ng-minlength="2"
-                     class="text-center">
+                     class="text-center color-mfblue">
             </label >
             <div class="form-errors"
                  ng-messages="createMedicamentForm.name.$error">
@@ -56,25 +57,13 @@
             </div>
             <br>
             <!-- Expiration Date -->
-            <label class="item item-input item-stacked-label" >
+            <label class="item item-input item-stacked-label" style="padding: 6px 0 5px 10px">
               <input type="text"
                      placeholder="Data de Validade"
                      name="expirationDate"
-                     ng-model="formData.expirationDate"
-                     class="text-center"
-                     ng-click="openDatePicker()"
-                     ng-value=" medicament.expirationDate | date:'dd/MM/yyyy' ">
-            </label>
-
-            <label class="item"
-                   ng-click="openDatePicker()"
-                   name="startDate"
-                   ng-model="formData.startDate"
-                   style="text-align: center; font-size: 14px; color: #f00">
-              {{ medicament.expirationDate ? "": "Data de Validade" }}
-              <span class="color-mfblue" ng-model="formData.expirationDate">
-                {{ medicament.expirationDate | date:'dd/MM/yyyy' }}
-              </span>
+                     ng-model="medicament.expirationDate | date:'dd/MM/yyyy'"
+                     class="text-center color-mfblue"
+                     ng-click="openDatePicker()">
             </label>
 
           </div>
