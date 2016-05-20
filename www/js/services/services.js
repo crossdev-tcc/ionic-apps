@@ -168,9 +168,10 @@ angular.module('minifarma.services', [])
         });
     };
 
-    self.insert = function(medicamentName) {
-      var parameters = [medicamentName, 0];
-      return DB.query('INSERT INTO Medicament (name, expired) VALUES (?, ?)', parameters);
+    self.insert = function(medicament) {
+      var parameters = [medicament.name, 0];
+      return DB.query('INSERT INTO Medicament (name, expiration_date, quantity, unit, price, dose, picture_medicament, picture_prescription, expired, id_pharmacy, id_category, id_place, id_interval, notes) VALUES (?,?,?,?,?,?,?,?,1,?,?,?,?,?)', parameters);
+      //INSERT INTO Medicament (name, expiration_date, quantity, unit, price, dose, picture_medicament, picture_prescription, expired, id_pharmacy, id_category, id_place, id_interval, notes) VALUES (?,?,?,?,?,?,?,?,1,?,?,?,?,?)'
     };
 
     self.update = function(id, medicament) {

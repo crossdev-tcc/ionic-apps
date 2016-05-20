@@ -6,7 +6,21 @@ var app = angular.module('minifarma.controllers.medicament', []);
 
 app.factory('Medicament', function() {
   var medicament = {};
-  medicament.expirationDate = null;
+  medicament.name  = null;
+  medicament.expiration_date  = null;
+  medicament.quantity  = null;
+  medicament.unit  = null;
+  medicament.price  = null;
+  medicament.dose  = null;
+  medicament.picture_medicament  = null;
+  medicament.picture_prescription  = null;
+  medicament.expired  = null;
+  medicament.id_pharmacy  = null;
+  medicament.id_category  = null;
+  medicament.id_place  = null;
+  medicament.id_interval  = null;
+  medicament.notes  = null;
+
   return medicament;
 });
 
@@ -87,6 +101,8 @@ app.controller('MedicamentCreateCtrl', function($scope,
   $scope.medicament = Medicament;
   $scope.category =  Category;
 
+  $scope.doseTypeString = '';
+
   $scope.groups = [];
   $scope.groups[0] = {
     name: "Quantidade"
@@ -117,8 +133,25 @@ app.controller('MedicamentCreateCtrl', function($scope,
     console.log("MedicamentCreateCtrl::addMedicament");
 
     if(form.$valid) {
-      console.log(form.name.$viewValue);
-      MedicamentService.insert(form.name.$viewValue);
+
+       $scope.medicament.name  = form.name.$viewValue;
+       // $scope.medicament.expiration_date - já setada no momento da seleção da data - $scope.medicament.expiration_date
+       $scope.medicament.quantity  = form.quantity.$viewValue;
+       // $scope.medicament.unit  = null;
+       $scope.medicament.price  = form.price.$viewValue;
+       $scope.medicament.dose  = form.dose.$viewValue;
+       // $scope.medicament.picture_medicament  = null;
+       // $scope.medicament.picture_prescription  = null;
+       // $scope.medicament.expired  - calculado no momento da seleção da data - $scope.medicament.expired;
+       // $scope.medicament.id_pharmacy  = null;//MESMA COISA QUE O INTERVALO
+       // $scope.medicament.id_category  = null;//MESMA COISA QUE O INTERVALO
+       // $scope.medicament.id_place  = null; //TEM QUE SALVAR UM LUGAR NOVO QUANDO APERTAR NO BOTAO DE MAIS E DEPOIS SUBSTITUIR O CAMPO PARA EM VEZ DE SER UM SELECT COM OPTIONS SETADAS PEGAR DO BANCO
+       // $scope.medicament.id_interval  = null; // TEM QUE RETORNAR O ID DO INTERVALO, JUNTO COM O NUMERO EM SI, DA TELA DE INTERVALOS
+       $scope.medicament.notes  = form.notes.$viewValue;
+
+
+      console.log($scope.doseTypeString);
+      MedicamentService.insert($scope.medicament);
       $state.go('tab.remedio');
     } else {
       console.log("Invalid form");
@@ -129,7 +162,13 @@ app.controller('MedicamentCreateCtrl', function($scope,
   /**  DATE PICKER */
   var dateSelecter = {
     callback: function (val) {
-      $scope.medicament.expirationDate = new Date(val);
+      var today = new Date();
+      $scope.medicament.expiration_date = new Date(val);
+      if($scope.medicament.expiration_date <= today){
+        $scope.medicament.expired = 1;//FORA DA DATA DE VALIDADE
+      }else{
+        $scope.medicament.expired = 0;//DENTRO DA DATA DE VALIDADE
+      }
       console.log('Return value from the datepicker popup is : ' + $scope.medicament.expirationDate );
     }
   };
@@ -137,7 +176,6 @@ app.controller('MedicamentCreateCtrl', function($scope,
   $scope.openDatePicker = function(){
     ionicDatePicker.openDatePicker(dateSelecter);
   };
-
 
   /** MEDICAMENT PICTURE */
   $scope.addMedicamentPicture = function () {
@@ -258,16 +296,16 @@ app.controller('MedicamentCreateCtrl', function($scope,
   };
 
   // DATABASE FUNCTIONS
-
-  $scope.insert = function(medicamentName) {
-    $cordovaSQLite.execute(db, 'INSERT INTO Medicament (name, expired) VALUES (?, 1)', [medicamentName])
-      .then(function(result) {
-        console.log("Message inserted successful, cheers!");
-        console.log('resultSet.insertId: ' + result.insertId);
-      }, function(error) {
-        console.log("Error on insert: " + error.message);
-      })
-
-  };
+  //
+  // $scope.insert = function(medicamentName) {
+  //   $cordovaSQLite.execute(db, 'INSERT INTO Medicament (name, expiration_date, quantity, unit, price, dose, picture_medicament, picture_prescription, expired, id_pharmacy, id_category, id_place, id_interval, notes) VALUES (?,?,?,?,?,?,?,?,1,?,?,?,?,?)', [medicamentName])
+  //     .then(function(result) {
+  //       console.log("Message inserted successful, cheers!");
+  //       console.log('resultSet.insertId: ' + result.insertId);
+  //     }, function(error) {
+  //       console.log("Error on insert: " + error.message);
+  //     })
+  //
+  // };
 
 });
