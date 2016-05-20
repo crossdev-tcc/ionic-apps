@@ -116,8 +116,6 @@ app.controller('MedicamentCreateCtrl', function($scope,
 
     console.log("MedicamentCreateCtrl::addMedicament");
 
-    console.log(form.doseType);
-
     if(form.$valid) {
       console.log(form.name.$viewValue);
       MedicamentService.insert(form.name.$viewValue);
@@ -141,16 +139,39 @@ app.controller('MedicamentCreateCtrl', function($scope,
   };
 
 
-  /** PICTURE */
+  /** MEDICAMENT PICTURE */
+  $scope.addMedicamentPicture = function () {
+    $scope.pictureType = "medicament";
+    $scope.addPicture();
+  };
+
+  /** PRESCRIPTION PICTURE */
+  $scope.addPrescriptionPicture = function () {
+    $scope.pictureType = "prescription";
+    $scope.addPicture();
+  };
+
+  /** ADD A PICTURE */
   $scope.addPicture = function () {
     console.log("Let's add a picture!");
 
-    // Show the action sheet
-    var hideSheet = $ionicActionSheet.show({
-      buttons: [
+    var buttons = [];
+    if($scope.pictureType == "prescription" && $scope.prescriptionPicture != null) {
+      buttons = [
+        { text: 'Tirar uma foto' },
+        { text: 'Escolher da galeria' },
+        { text: 'Visualizar foto' }
+      ]
+    } else {
+      buttons = [
         { text: 'Tirar uma foto' },
         { text: 'Escolher da galeria' }
-      ],
+      ]
+    }
+
+    // Show the action sheet
+    var hideSheet = $ionicActionSheet.show({
+      buttons: buttons,
       destructiveText: 'Remover',
       titleText: 'O que deseja fazer?',
       cancelText: 'Cancelar',
@@ -163,6 +184,8 @@ app.controller('MedicamentCreateCtrl', function($scope,
           $scope.doGetFromCamera();
         } else if (index == 1) {
           $scope.doGetFromGallery();
+        } else if (index == 2) {
+          //Show picture
         }
         return true;
       },
@@ -186,12 +209,16 @@ app.controller('MedicamentCreateCtrl', function($scope,
     };
 
     $cordovaCamera.getPicture(options).then(function (imageData) {
-      $scope.picture = imageData;
+      if ($scope.pictureType == "medicament") {
+        $scope.picture = imageData;
+      } else {
+        $scope.prescriptionPicture = imageData;
+      }
     }, function (err) {
       console.error(err);
       $ionicPopup.alert({
-        title:'Error getting picture',
-        subTitle: 'We had a problem trying to get that picture, please try again'
+        title:'Erro ao obter imagem',
+        subTitle: 'Ocorreu um erro ao obter a imagem, por favor tente novamente.'
       });
     });
 
@@ -211,7 +238,11 @@ app.controller('MedicamentCreateCtrl', function($scope,
     };
 
     $cordovaCamera.getPicture(options).then(function (imageData) {
-      $scope.picture = imageData;
+      if ($scope.pictureType == "medicament") {
+        $scope.picture = imageData;
+      } else {
+        $scope.prescriptionPicture = imageData;
+      }
     }, function (err) {
       console.error(err);
       $ionicPopup.alert({

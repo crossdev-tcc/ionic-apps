@@ -9843,3 +9843,7 @@ form .form-errors {
   font-size: 12px;
   font-weight: bold;
   border-bottom-width: 0px; }
+
+.toggle input:checked + .track {
+  background-color: #009ec9;
+  border-color: #009ec9; }

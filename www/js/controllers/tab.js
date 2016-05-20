@@ -2,8 +2,7 @@ angular.module('minifarma.controllers.tab', [])
 
   .controller('TabCtrl', function($scope,
                                   $state,
-                                  $ionicActionSheet,
-                                  $timeout) {
+                                  $ionicActionSheet) {
 
     $scope.showAction = function() {
 
@@ -35,11 +34,6 @@ angular.module('minifarma.controllers.tab', [])
           return true;
         }
       });
-
-      $timeout(function() {
-        hideSheet();
-      }, 5000);
-
     };
 
     $scope.createMedicament = function() {

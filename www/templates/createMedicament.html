@@ -21,7 +21,7 @@
       <ion-list >
 
         <div class="row row-center">
-          <div class="col" style="display: flex; align-items: center; justify-content: center;" ng-click="addPicture()">
+          <div class="col" style="display: flex; align-items: center; justify-content: center;" ng-click="addMedicamentPicture()">
 
             <!-- Add Photo -->
             <div class="color-mfblue" ng-show="!picture" style="height:45vw; display: flex; align-items: center;">
@@ -209,7 +209,7 @@
         <!-- Alert -->
         <div class="item item-toggle assertive">
           Alerta
-          <label class="toggle toggle-assertive">
+          <label class="toggle">
             <input type="checkbox">
             <div class="track">
               <div class="handle"></div>
@@ -218,9 +218,11 @@
         </div>
 
         <!-- Receipt -->
-        <label class="item item-icon-right assertive">
+        <label class="item item-icon-right assertive"
+               ng-click="addPrescriptionPicture()">
           Receita
-          <i class="icon ion-checkmark assertive" style="font-size: 16px"></i>
+          <i class="icon ion-checkmark assertive" style="font-size: 16px"
+              ng-if="prescriptionPicture"></i>
         </label>
 
         <!-- Notes -->
