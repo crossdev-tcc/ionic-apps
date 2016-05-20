@@ -140,8 +140,8 @@ app.controller('MedicamentCreateCtrl', function($scope,
        // $scope.medicament.unit  = null;
        $scope.medicament.price  = form.price.$viewValue;
        $scope.medicament.dose  = form.dose.$viewValue;
-       // $scope.medicament.picture_medicament  = null;
-       // $scope.medicament.picture_prescription  = null;
+       $scope.medicament.picture_medicament = $scope.picture;
+       $scope.medicament.picture_prescription  = $scope.prescriptionPicture;
        // $scope.medicament.expired  - calculado no momento da seleção da data - $scope.medicament.expired;
        // $scope.medicament.id_pharmacy  = null;//MESMA COISA QUE O INTERVALO
        // $scope.medicament.id_category  = null;//MESMA COISA QUE O INTERVALO
