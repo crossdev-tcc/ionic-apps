@@ -50,6 +50,7 @@ app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, ioni
   $scope.medicament = Medicament;
   $scope.startDate = null;
   $scope.startTime = null;
+  $scope.presentCorrectTime = null;
 
   var dateSelecter = {
     callback: function (val) {
@@ -59,7 +60,13 @@ app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, ioni
 
   var timeSelecter = {
     callback: function (val) {
-        $scope.startTime = val * 1000;
+
+      var selectedTime = new Date(val * 1000);
+      var hour = selectedTime.getUTCHours();
+      var minute = selectedTime.getUTCMinutes();
+      $scope.presentCorrectTime = hour + ":" + minute;
+
+      $scope.startTime = val * 1000;
     },
     inputTime: ((new Date()).getHours() * 60 * 60),
     format: 24,
@@ -104,8 +111,8 @@ app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, ioni
  **********************************/
 
 app.controller('MedicamentAlertListCtrl', function($scope, $ionicHistory, Medicament,
-                                                                          MedicamentService,
-                                                                          $ionicConfig) {
+                                                   MedicamentService,
+                                                   $ionicConfig) {
 
   $ionicConfig.backButton.text("Alerta");
 
