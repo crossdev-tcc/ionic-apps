@@ -10,6 +10,25 @@ var app = angular.module('minifarma', [
   'minifarma.database'
 ]);
 
+app.directive('formattedDate', function(dateFilter) {
+  return {
+    require: 'ngModel',
+    scope: {
+      format: "="
+    },
+    link: function(scope, element, attrs, ngModelController) {
+      ngModelController.$parsers.push(function(data) {
+        return dateFilter(data, scope.format);
+      });
+
+      ngModelController.$formatters.push(function(data) {
+        return dateFilter(data, scope.format);
+      });
+    }
+  }
+  //http://plnkr.co/edit/cLNknnfsPjcNePX3pHsA?p=preview
+});
+
 app.run(function($ionicPlatform, DB) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
