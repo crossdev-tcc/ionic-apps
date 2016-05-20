@@ -135,7 +135,17 @@ app.config(function($stateProvider, $urlRouterProvider, ionicDatePickerProvider,
     cache: false,
     controller: 'PharmacyCreateCtrl',
     templateUrl: "templates/createPharmacy.html"
+  })
+
+  .state('medicament.picture', {
+      url: "/picture",
+      params: {
+        picture: null
+      },
+      templateUrl: "templates/showPicture.html",
+      controller: 'MedicamentPicture'
   });
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/remedios');
 

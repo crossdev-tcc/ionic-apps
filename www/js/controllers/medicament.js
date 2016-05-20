@@ -73,6 +73,16 @@ app.controller('MedicamentCategoryListCtrl', function($scope,
 
 });
 
+/**********************************
+ *  Medicament Picture
+ **********************************/
+app.controller('MedicamentPicture', function($scope,
+                                             $ionicHistory,
+                                             picture) {
+  $scope.picture = picture;
+
+});
+
 app.controller('MedicamentCreateCtrl', function($scope,
                                                 $state,
                                                 $cordovaCamera,
@@ -185,7 +195,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
         } else if (index == 1) {
           $scope.doGetFromGallery();
         } else if (index == 2) {
-          //Show picture
+          $state.go('medicament.picture', {picture: $scope.prescriptionPicture});
         }
         return true;
       },
