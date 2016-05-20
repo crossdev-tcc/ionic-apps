@@ -8,6 +8,7 @@
     "angular": "1.4.3"
   },
   "dependencies": {
-    "ionic-datepicker": "^1.1.0"
+    "ionic-datepicker": "^1.1.0",
+    "ionic-timepicker": "^0.5.1"
   }
 }

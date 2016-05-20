@@ -4,6 +4,7 @@ var app = angular.module('minifarma', [
   'ngCordova',
   'ngMap',
   'ionic-datepicker',
+  'ionic-timepicker',
   'minifarma.controllers',
   'minifarma.services',
   'minifarma.database'
@@ -33,7 +34,7 @@ app.run(function($ionicPlatform, DB) {
 
 });
 
-app.config(function($stateProvider, $urlRouterProvider, ionicDatePickerProvider) {
+app.config(function($stateProvider, $urlRouterProvider, ionicDatePickerProvider, ionicTimePickerProvider) {
 
   var datePickerObj = {
     inputDate: new Date(),
@@ -52,6 +53,16 @@ app.config(function($stateProvider, $urlRouterProvider, ionicDatePickerProvider)
   };
 
   ionicDatePickerProvider.configDatePicker(datePickerObj);
+
+  var timePickerObj = {
+    inputTime: (((new Date()).getHours() * 60 * 60) + ((new Date()).getMinutes() * 60)),
+    format: 12,
+    step: 15,
+    setLabel: 'Ok',
+    closeLabel: 'Fechar'
+  };
+
+  ionicTimePickerProvider.configTimePicker(timePickerObj);
 
   $stateProvider
 
