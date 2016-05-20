@@ -27,7 +27,18 @@
         ng-model="formData.startDate">
             Data de Início
           <span class="item-note calm">
-            {{ alert.startDate | date:'dd/MM/yyyy' }}
+            {{ startDate | date:'dd/MM/yyyy' }}
+          </span>
+          <i class="icon ion-ios-arrow-forward" style="color: lightgray"></i>
+        </label>
+
+        <label class="item item-icon-right assertive"
+               ng-click="openTimePicker()"
+               name="startTime"
+               ng-model="formData.startTime">
+          Hora de Início
+          <span class="item-note calm">
+            {{ startTime | date:'HH:mm' }}
           </span>
           <i class="icon ion-ios-arrow-forward" style="color: lightgray"></i>
         </label>
@@ -48,13 +59,13 @@
               <div class=" button-bar">
                 <a class="button button-outline button-assertive segmented-collapsed"
                    ng-click="createAlertForm.durationUnity=0"
-                   ng-class="{active: createAlertForm.durationUnity == 'dia'}">dia</a>
+                   ng-class="{active: createAlertForm.durationUnity == 0}">dia</a>
                 <a class="button button-outline button-assertive segmented-collapsed"
                    ng-click="createAlertForm.durationUnity=1"
-                   ng-class="{active: createAlertForm.durationUnity == 'semana'}">semana</a>
+                   ng-class="{active: createAlertForm.durationUnity == 1}">semana</a>
                 <a class="button button-outline button-assertive segmented-collapsed"
                    ng-click="createAlertForm.durationUnity=2"
-                   ng-class="{active: createAlertForm.durationUnity == 'mês'}">mês</a>
+                   ng-class="{active: createAlertForm.durationUnity == 2}">mês</a>
               </div>
             </div>
           </div>
