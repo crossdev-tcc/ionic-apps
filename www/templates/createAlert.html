@@ -37,8 +37,8 @@
                name="startTime"
                ng-model="formData.startTime">
           Hora de Início
-          <span class="item-note calm">
-            {{ startTime | date:'HH:mm' }}
+          <span class="item-note calm" ng-if="startTime != null">
+            {{ presentCorrectTime }}
           </span>
           <i class="icon ion-ios-arrow-forward" style="color: lightgray"></i>
         </label>
