@@ -33,7 +33,7 @@ app.constant('DB_CONFIG', {
         name: 'Alert',
         columns: [
           {name: 'id', type: 'integer primary key'},
-          {name: 'startDate', type: 'datetime'},
+          {name: 'startDate', type: 'integer'},
           {name: 'duration_unit', type: 'integer'},
           {name: 'duration_number', type: 'integer'},
           {name: 'active', type: 'integer'},

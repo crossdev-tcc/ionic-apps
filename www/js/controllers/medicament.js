@@ -159,8 +159,8 @@ app.controller('MedicamentCreateCtrl', function($scope,
        // $scope.medicament.id_interval  = null; // TEM QUE RETORNAR O ID DO INTERVALO, JUNTO COM O NUMERO EM SI, DA TELA DE INTERVALOS
        $scope.medicament.notes  = form.notes.$viewValue;
 
+      console.log($scope.medicament);
 
-      console.log($scope.doseTypeString);
       MedicamentService.insert($scope.medicament);
       $state.go('tab.remedio');
     } else {
@@ -179,7 +179,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
       }else{
         $scope.medicament.expired = 0;//DENTRO DA DATA DE VALIDADE
       }
-      console.log('Return value from the datepicker popup is : ' + $scope.medicament.expirationDate );
+      console.log('Return value from the datepicker popup is : ' + $scope.medicament.expiration_date );
     }
   };
 
@@ -304,18 +304,5 @@ app.controller('MedicamentCreateCtrl', function($scope,
   $scope.cancelCreate = function () {
     $state.go('tab.remedio');
   };
-
-  // DATABASE FUNCTIONS
-  //
-  // $scope.insert = function(medicamentName) {
-  //   $cordovaSQLite.execute(db, 'INSERT INTO Medicament (name, expiration_date, quantity, unit, price, dose, picture_medicament, picture_prescription, expired, id_pharmacy, id_category, id_place, id_interval, notes) VALUES (?,?,?,?,?,?,?,?,1,?,?,?,?,?)', [medicamentName])
-  //     .then(function(result) {
-  //       console.log("Message inserted successful, cheers!");
-  //       console.log('resultSet.insertId: ' + result.insertId);
-  //     }, function(error) {
-  //       console.log("Error on insert: " + error.message);
-  //     })
-  //
-  // };
 
 });

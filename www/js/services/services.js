@@ -83,14 +83,14 @@ angular.module('minifarma.services', [])
 
     self.insert = function(alert) {
       var parameters = [
-        alert.startDate,
-        alert.interval,
-        alert.durationNumber,
+        alert.startDateTime,
         alert.durationUnity,
+        alert.durationNumber,
         alert.active,
-        alert.medicamentId];
+        alert.id_interval,
+        alert.id_medicament];
 
-      return DB.query('INSERT INTO Alert (startDate, interval, durationNumber, durationUnity, active, medicamentId) VALUES (?,?,?,?,?,?)', parameters);
+      return DB.query('INSERT INTO Alert (startDate, duration_unit, duration_number, active, id_interval, id_medicament) VALUES (?,?,?,?,?,?)', parameters);
     };
 
     return self;
@@ -115,8 +115,21 @@ angular.module('minifarma.services', [])
     };
 
     self.insert = function(medicament) {
-      var parameters = [medicament.name, 0];
-      return DB.query('INSERT INTO Medicament (name, expiration_date, quantity, unit, price, dose, picture_medicament, picture_prescription, expired, id_pharmacy, id_category, id_place, id_interval, notes) VALUES (?,?,?,?,?,?,?,?,1,?,?,?,?,?)', parameters);
+      var parameters = [medicament.name,
+        medicament.expiration_date,
+        medicament.quantity,
+        medicament.unit,
+        medicament.price,
+        medicament.dose,
+        medicament.picture_medicament,
+        medicament.picture_prescription,
+        medicament.expired,
+        medicament.id_pharmacy,
+        medicament.id_category,
+        medicament.id_place,
+        medicament.id_interval,
+        medicament.notes];
+      return DB.query('INSERT INTO Medicament (name, expiration_date, quantity, unit, price, dose, picture_medicament, picture_prescription, expired, id_pharmacy, id_category, id_place, id_interval, notes) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)', parameters);
       //INSERT INTO Medicament (name, expiration_date, quantity, unit, price, dose, picture_medicament, picture_prescription, expired, id_pharmacy, id_category, id_place, id_interval, notes) VALUES (?,?,?,?,?,?,?,?,1,?,?,?,?,?)'
     };
 
@@ -174,4 +187,21 @@ angular.module('minifarma.services', [])
     };
 
     return self;
-  }); 
+  })
+
+  .factory('IntervalService', function () {
+    var self = this;
+
+    self.intervals = {
+      '1 hora':   [0, 1, 'hora'],
+      '2 horas':  [1, 2, 'horas'],
+      '3 horas':  [2, 3, 'horas'],
+      '4 horas':  [3, 4, 'horas'],
+      '6 horas':  [4, 6, 'horas'],
+      '8 horas':  [5, 8, 'horas'],
+      '12 horas': [6, 12, 'horas'],
+      '24 horas': [7, 24, 'horas']
+    };
+
+    return self
+  });

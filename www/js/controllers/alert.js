@@ -7,11 +7,11 @@ var app = angular.module('minifarma.controllers.alert', []);
 app.factory('Alert', function() {
   var alert = {};
   alert.startDateTime = null;
-  alert.medicamentId = null;
-  alert.interval = null;
+  alert.id_medicament = null;
+  alert.id_interval = null;
   alert.durationNumber = null;
   alert.durationUnity = null;
-  alert.active = true;
+  alert.active = 1;
   return alert;
 });
 
@@ -27,30 +27,35 @@ app.factory('Medicament', function() {
  *  AlertListCtrl
  **********************************/
 
-app.controller('AlertListCtrl', function($scope, Alertas) {
+app.controller('AlertListCtrl', function($scope, AlertService) {
 
   $scope.isAndroid = ionic.Platform.isAndroid();
 
   $scope.data =  {
     "filter" : true,
-    "alertas": Alertas.all()
+    "alertas": AlertService.all()
   };
 
   $scope.remove = function(alerta) {
-    Alertas.remove(alerta);
+    AlertService.remove(alerta);
   };
 });
 
 /**********************************
  *  AlertCreateCtrl
  **********************************/
-app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, ionicTimePicker, Alert, Medicament, AlertService) {
+app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, ionicTimePicker, Alert, Medicament, AlertService, IntervalService) {
 
   $scope.alert = Alert;
   $scope.medicament = Medicament;
   $scope.startDate = null;
   $scope.startTime = null;
   $scope.presentCorrectTime = null;
+
+  //Objeto idIntervals funciona como uma dicionario
+  //key: string
+  //value: array<idIntervalo, numeroIntervalo, complementoString>
+  $scope.idIntervals = IntervalService.intervals;
 
   var dateSelecter = {
     callback: function (val) {
@@ -87,14 +92,19 @@ app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, ioni
     console.log("AlertCreateCtrl::addAlert");
 
     if(form.$valid) {
+      var d = new Date($scope.startDate + $scope.startTime);
+      $scope.alert.startDateTime = d;
+      //se precisar salvar como numero de milisegundos desde 01/01/1970 basta colocar d.getTime()
+      //depos para colocar no formato de data, basta criar uma data com esse valor - new Date(d)
       $scope.alert.durationNumber = form.duration.$viewValue;
       $scope.alert.durationUnity = form.durationUnity;
-      $scope.alert.interval = form.interval.$viewValue;
-      $scope.alert.medicamentId = $scope.medicament.id;
-      $scope.alert.active = true;
-      $scope.alert.startDateTime = new Date($scope.startDate + $scope.startTime);
+      $scope.alert.active = 1;
+      $scope.alert.id_interval = $scope.idIntervals[form.interval.$viewValue][0];
+      $scope.alert.id_medicament = $scope.medicament.id;
+
       console.log($scope.alert);
-      // AlertService.insert($scope.alert);
+      // console.log(new Date(d));
+      AlertService.insert($scope.alert);
     } else {
       console.log("Invalid form");
     }
