@@ -156,13 +156,14 @@ app.config(function($stateProvider, $urlRouterProvider, ionicDatePickerProvider,
     templateUrl: "templates/createPharmacy.html"
   })
 
-  .state('medicament.picture', {
+
+  .state('medicamentPicture', {
       url: "/picture",
+      controller: 'MedicamentPicture',
       params: {
-        picture: null
+        picture: ""
       },
-      templateUrl: "templates/showPicture.html",
-      controller: 'MedicamentPicture'
+      templateUrl: "templates/showPicture.html"
   });
 
   // if none of the above states are matched, use this as the fallback
