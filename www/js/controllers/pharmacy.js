@@ -1,24 +1,27 @@
 var app = angular.module('minifarma.controllers.pharmacy', ['ngMap']);
 
-/**********************************
- *  PharmacyCreateCtrl
- **********************************/
 app.factory('Pharmacy', function() {
-   pharmacy = {};
+   var pharmacy = {};
    pharmacy.name = '';
    pharmacy.phone = '';
    pharmacy.lat = '';
    pharmacy.lon = '';
+   pharmacy.favorite = 0;
    return pharmacy;
 });
 
-app.controller('PharmacyCreateCtrl', function($scope, $state, Pharmacy) {
+/**********************************
+ *  PharmacyCreateCtrl
+ **********************************/
+
+app.controller('PharmacyCreateCtrl', function($scope, $state, Pharmacy, PharmacyService) {
 
   $scope.currentPosition = {};
   $scope.marker = null;
   $scope.pharmacyLat = null;
   $scope.pharmacyLon = null;
   $scope.pharmacy = Pharmacy;
+  $scope.liked = false;
 
   $scope.addPharmacy = function (form) {
     console.log("PharmacyCreateCtrl::addPharmacy");
@@ -29,7 +32,7 @@ app.controller('PharmacyCreateCtrl', function($scope, $state, Pharmacy) {
       $scope.pharmacy.lat = $scope.pharmacyLat;
       $scope.pharmacy.lon = $scope.pharmacyLon;
       console.log($scope.pharmacy);
-      // $scope.insert();
+      PharmacyService.insert($scope.pharmacy);
     } else {
       console.log("Invalid form");
     }

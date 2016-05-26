@@ -1,53 +1,5 @@
 angular.module('minifarma.services', [])
 
-  .factory('Alertas', function () {
-
-    // Some fake testing data
-    var alertas = [
-      {
-        id: 0,
-        name: 'Novalgina',
-        nextDate: '12/12/2012 21:00',
-        face: 'img/ionic.png',
-        active: true
-      }, {
-        id: 1,
-        name: 'Maracujina',
-        nextDate: '12/12/2012 21:00',
-        face: 'img/ionic.png',
-        active: false
-      }, {
-        id: 2,
-        name: 'Tylenol',
-        nextDate: '12/12/2012 21:00',
-        face: 'img/ionic.png',
-        active: false
-      }, {
-        id: 3,
-        name: 'Arnica',
-        nextDate: '12/12/2012 21:00',
-        face: 'img/ionic.png',
-        active: false
-      }];
-
-    return {
-      all: function () {
-        return alertas;
-      },
-      remove: function (alerta) {
-        alertas.splice(alertas.indexOf(alerta), 1);
-      },
-      get: function (remedioId) {
-        for (var i = 0; i < alertas.length; i++) {
-          if (alertas[i].id === parseInt(alertaId)) {
-            return alertas[i];
-          }
-        }
-        return null;
-      }
-    };
-  })
-
   .factory('DB', function ($q,
                            $cordovaSQLite,
                            $ionicPlatform,
@@ -63,12 +15,6 @@ angular.module('minifarma.services', [])
         console.log('websql');
         self.db = window.openDatabase(DB_CONFIG.name, "1.0", "MiniFarma", -1);
       }
-
-      //var query = 'CREATE TABLE IF NOT EXISTS Medicament (id integer primary key, name text, expired int)';
-      //self.query(query);
-
-      //query = 'CREATE TABLE IF NOT EXISTS Alert (id integer primary key, startDate date, interval int, durationNumber int, durationUnity int, active int, medicamentId int)';
-      //self.query(query);
 
       angular.forEach(DB_CONFIG.tables, function(table) {
         var columns = [];
@@ -125,7 +71,7 @@ angular.module('minifarma.services', [])
     return self;
   })
 
-  .factory('AlertService', function(DB, $cordovaSQLite) {
+  .factory('AlertService', function(DB) {
     var self = this;
 
     self.all = function () {
@@ -150,7 +96,7 @@ angular.module('minifarma.services', [])
     return self;
   })
 
-  .factory('MedicamentService', function (DB, $cordovaSQLite) {
+  .factory('MedicamentService', function (DB) {
 
     var self = this;
 
@@ -188,6 +134,43 @@ angular.module('minifarma.services', [])
         function (err) {
           console.log("Error deleting medicament " + err);
         });
+    };
+
+    return self;
+  })
+
+  .factory('PharmacyService', function (DB) {
+
+    var self = this;
+
+    self.all = function () {
+      return DB.query('SELECT * FROM Pharmacy')
+        .then(function (result) {
+          return DB.fetchAll(result);
+        });
+    };
+
+    self.getById = function (id) {
+      return DB.query('SELECT * FROM Pharmacy WHERE id = ?', [id])
+        .then(function (result) {
+          return DB.fetch(result);
+        });
+    };
+
+    self.insert = function(pharmacy) {
+      var parameters = [pharmacy.name, pharmacy.favorite, pharmacy.lat, pharmacy.lon, pharmacy.phone];
+      return DB.query('INSERT INTO Pharmacy (name, favorite, latitude, longitude, phone) VALUES (?,?,?,?,?)', parameters);
+    };
+
+    self.remove = function(medicament) {
+      var parameters = [medicament.id];
+      return DB.query('DELETE FROM Pharmacy WHERE id = (?)', parameters)
+        .then(function (result) {
+            console.log("Deleted pharmacy" + result);
+          },
+          function (err) {
+            console.log("Error deleting pharmacy " + err);
+          });
     };
 
     return self;

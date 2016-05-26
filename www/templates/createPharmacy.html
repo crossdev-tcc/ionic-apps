@@ -36,18 +36,12 @@
                  ng-model="formData.phone"
                  ng-required="false"
                  ng-minlength="8">
-        </label >
-
-
-        <!-- <div class="form-errors"
-             ng-messages="createAlertForm.name.$error">
-          <div ng-messages-include="templates/form-errors.html"></div>
-          <div class="form-error" ng-message="minlength" >
-               Por favor, insira um nome válido.
-          </div>
-        </div> -->
+        </label>
       </ion-list>
     </form>
-    <map ng-init="getCurrentLocation()"/>
+    <!--style="position:absolute; top:0;bottom:0;left:0;right:0;"-->
+    <!--style="width: 100%; height: 100%;"-->
+    <map ng-init="getCurrentLocation()" style/>
+
   </ion-content>
 </ion-view>
