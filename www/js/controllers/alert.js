@@ -103,8 +103,8 @@ app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, ioni
       $scope.alert.id_medicament = $scope.medicament.id;
 
       console.log($scope.alert);
-      // console.log(new Date(d));
       AlertService.insert($scope.alert);
+      $state.go('tab.alerta');
     } else {
       console.log("Invalid form");
     }
