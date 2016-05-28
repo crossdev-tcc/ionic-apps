@@ -6,9 +6,9 @@ var app = angular.module('minifarma.controllers.alert', []);
 
 app.factory('Alert', function() {
   var alert = {};
-  alert.startDate = null;
-  alert.startTime= null;
-  alert.presentCorrectTime = null;
+  alert.startDate = null;//aux variable
+  alert.startTime= null;//aux variable
+  alert.presentCorrectTime = null;//aux variable
   alert.startDateTime = null;
   alert.id_medicament = null;
   alert.id_interval = null;
@@ -29,26 +29,25 @@ app.factory('Medicament', function() {
 /**********************************
  *  AlertListCtrl
  **********************************/
-
 app.controller('AlertListCtrl', function($scope, AlertService, MedicamentService) {
 
   $scope.isAndroid = ionic.Platform.isAndroid();
+  $scope.filterValue = 1;
 
   AlertService.all().then(function(alertsResult){
     $scope.alertas = alertsResult;
   });
-
-  $scope.remove = function(alerta) {
-    AlertService.remove(alerta);
-  };
-
-  $scope.filterValue = 1;
 
   $scope.getMedicamentName = function (alerta) {
     var id_medicament = alerta.id_medicament;
     MedicamentService.getById(id_medicament).then(function(medicament){
       alerta.medicament_name = medicament.name;
     });
+  };
+
+  $scope.remove = function(alerta) {
+    AlertService.remove(alerta);
+    $scope.alertas.splice($scope.alertas.indexOf(alerta), 1);
   };
 
 });
@@ -117,7 +116,6 @@ app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, ioni
 /**********************************
  *  MedicamentAlertListCtrl
  **********************************/
-
 app.controller('MedicamentAlertListCtrl', function($scope, $ionicHistory, Medicament,
                                                    MedicamentService,
                                                    $ionicConfig) {

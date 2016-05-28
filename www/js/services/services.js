@@ -93,6 +93,16 @@ angular.module('minifarma.services', [])
       return DB.query('INSERT INTO Alert (startDate, duration_unit, duration_number, active, id_interval, id_medicament) VALUES (?,?,?,?,?,?)', parameters);
     };
 
+    self.remove = function(alert) {
+      var parameters = [alert.id];
+      return DB.query('DELETE FROM Alert WHERE id = (?)', parameters).then(function (result) {
+            console.log("Deleted alert" + result);
+          },
+          function (err) {
+            console.log("Error deleting alert " + err);
+          });
+    };
+
     return self;
   })
 
