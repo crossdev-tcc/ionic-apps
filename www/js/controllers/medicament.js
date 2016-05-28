@@ -52,7 +52,7 @@ app.controller('MedicamentListCtrl', function($scope, MedicamentService) {
 });
 
 /**********************************
- *  MedicamentCreateCtrl
+ *  MedicamentCategoryListCtrl
  **********************************/
 app.controller('MedicamentCategoryListCtrl', function($scope,
                                                       $ionicHistory,
@@ -94,6 +94,9 @@ app.controller('MedicamentPicture', function($scope,
 
 });
 
+/**********************************
+ *  MedicamentCreateCtrl
+ **********************************/
 app.controller('MedicamentCreateCtrl', function($scope,
                                                 $state,
                                                 $cordovaCamera,
@@ -103,8 +106,6 @@ app.controller('MedicamentCreateCtrl', function($scope,
                                                 Medicament,
                                                 Category,
                                                 ionicDatePicker) {
-  console.log("MedicamentCreateCtrl");
-
   $scope.medicament = Medicament;
   $scope.category =  Category;
 
@@ -135,25 +136,19 @@ app.controller('MedicamentCreateCtrl', function($scope,
     return $scope.shownGroup === group;
   };
 
+  /**  ADD MEDICAMENT **/
   $scope.addMedicament = function (form) {
 
     console.log("MedicamentCreateCtrl::addMedicament");
+    console.log($scope.medicament.id_interval);
+
 
     if(form.$valid) {
 
-       $scope.medicament.name  = form.name.$viewValue;
-       // $scope.medicament.expiration_date - já setada no momento da seleção da data - $scope.medicament.expiration_date
-       $scope.medicament.quantity  = form.quantity.$viewValue;
-       // $scope.medicament.unit  = null;
-       $scope.medicament.price  = form.price.$viewValue;
        $scope.medicament.dose  = form.dose.$viewValue;
-       $scope.medicament.picture_medicament = $scope.picture;
-       $scope.medicament.picture_prescription  = $scope.prescriptionPicture;
-       // $scope.medicament.expired  - calculado no momento da seleção da data - $scope.medicament.expired;
        // $scope.medicament.id_pharmacy  = null;//MESMA COISA QUE O INTERVALO
        // $scope.medicament.id_category  = null;//MESMA COISA QUE O INTERVALO
        // $scope.medicament.id_place  = null; //TEM QUE SALVAR UM LUGAR NOVO QUANDO APERTAR NO BOTAO DE MAIS E DEPOIS SUBSTITUIR O CAMPO PARA EM VEZ DE SER UM SELECT COM OPTIONS SETADAS PEGAR DO BANCO
-       // $scope.medicament.id_interval  = null; // TEM QUE RETORNAR O ID DO INTERVALO, JUNTO COM O NUMERO EM SI, DA TELA DE INTERVALOS
        $scope.medicament.notes  = form.notes.$viewValue;
 
       console.log($scope.medicament);
@@ -166,15 +161,15 @@ app.controller('MedicamentCreateCtrl', function($scope,
   };
 
 
-  /**  DATE PICKER */
+  /**  DATE PICKER **/
   var dateSelecter = {
     callback: function (val) {
       var today = new Date();
       $scope.medicament.expiration_date = new Date(val);
       if($scope.medicament.expiration_date <= today){
-        $scope.medicament.expired = 1;//FORA DA DATA DE VALIDADE
+        $scope.medicament.expired = 1; //FORA DA DATA DE VALIDADE
       }else{
-        $scope.medicament.expired = 0;//DENTRO DA DATA DE VALIDADE
+        $scope.medicament.expired = 0; //DENTRO DA DATA DE VALIDADE
       }
       console.log('Return value from the datepicker popup is : ' + $scope.medicament.expiration_date );
     }
@@ -201,7 +196,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
     console.log("Let's add a picture!");
 
     var buttons = [];
-    if($scope.pictureType == "prescription" && $scope.prescriptionPicture != null) {
+    if($scope.pictureType == "prescription" && $scope.medicament.picture_prescription != null) {
       buttons = [
         { text: 'Tirar uma foto' },
         { text: 'Escolher da galeria' },
@@ -211,7 +206,6 @@ app.controller('MedicamentCreateCtrl', function($scope,
       buttons = [
         { text: 'Tirar uma foto' },
         { text: 'Escolher da galeria' },
-        { text: 'Visualizar foto' }
       ]
     }
 
@@ -231,7 +225,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
         } else if (index == 1) {
           $scope.doGetFromGallery();
         } else if (index == 2) {
-          $state.go('medicamentPicture', {picture: $scope.prescriptionPicture});
+          $state.go('medicamentPicture', {picture: $scope.medicament.picture_prescription});
         }
         return true;
       },
@@ -256,9 +250,9 @@ app.controller('MedicamentCreateCtrl', function($scope,
 
     $cordovaCamera.getPicture(options).then(function (imageData) {
       if ($scope.pictureType == "medicament") {
-        $scope.picture = imageData;
+        $scope.medicament.picture_medicament = imageData;
       } else {
-        $scope.prescriptionPicture = imageData;
+        $scope.medicament.picture_prescription = imageData;
       }
     }, function (err) {
       console.error(err);
@@ -285,9 +279,9 @@ app.controller('MedicamentCreateCtrl', function($scope,
 
     $cordovaCamera.getPicture(options).then(function (imageData) {
       if ($scope.pictureType == "medicament") {
-        $scope.picture = imageData;
+        $scope.medicament.picture_medicament = imageData;
       } else {
-        $scope.prescriptionPicture = imageData;
+        $scope.medicament.picture_prescription = imageData;
       }
     }, function (err) {
       console.error(err);
@@ -299,6 +293,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
 
   };
 
+  /** CANCEL AND GO BACK */
   $scope.cancelCreate = function () {
     $state.go('tab.remedio');
   };
