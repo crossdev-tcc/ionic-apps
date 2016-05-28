@@ -25,14 +25,14 @@
           <div class="col" style="display: flex; align-items: center; justify-content: center;" ng-click="addMedicamentPicture()">
 
             <!-- Add Photo -->
-            <div class="color-mfblue" ng-show="!picture" style="height:45vw; display: flex; align-items: center;">
+            <div class="color-mfblue" ng-show="!medicament.picture_medicament" style="height:45vw; display: flex; align-items: center;">
               adicionar foto
             </div>
 
             <!-- Photo -->
-            <div class="" ng-show="picture">
+            <div class="" ng-show="medicament.picture_medicament">
               <div class="picture">
-                <img ng-src="data:image/jpeg;base64,{{picture}}" alt="" style="height:45vw;"/>
+                <img ng-src="data:image/jpeg;base64,{{medicament.picture_medicament}}" alt="" style="height:45vw;"/>
               </div >
             </div>
           </div>
@@ -46,7 +46,7 @@
               <input type="text"
                      placeholder="Nome"
                      name="name"
-                     ng-model="formData.name"
+                     ng-model="medicament.name"
                      ng-required="true"
                      ng-minlength="2"
                      class="text-center color-mfblue">
@@ -89,15 +89,15 @@
           <div class="input-label assertive">
             Intervalo
           </div>
-          <select class="color-mfblue">
-            <option>1 hora</option>
-            <option selected>2 horas</option>
-            <option>3 hora(s)</option>
-            <option>4 hora(s)</option>
-            <option>6 hora(s)</option>
-            <option>8 hora(s)</option>
-            <option>12 hora(s)</option>
-            <option>24 hora(s)</option>
+          <select class="color-mfblue" ng-model="medicament.id_interval">
+            <option value=1>1 hora</option>
+            <option value=2>2 horas</option>
+            <option value=3>3 horas</option>
+            <option value=4>4 horas</option>
+            <option value=5>6 horas</option>
+            <option value=6>8 horas</option>
+            <option value=7>12 horas</option>
+            <option value=8>24 horas</option>
           </select>
         </label>
 
@@ -112,7 +112,7 @@
                ng-click="toggleGroup(groups[2])"
                ng-class="{active: isGroupShown(groups[2])}">
           Local
-          <span class="item-note color-mfblue"> {{ formData.place }} </span>
+          <span class="item-note color-mfblue"> {{ medicament.place }} </span>
         </label>
         <div class="item-accordion"
              ng-show="isGroupShown(groups[2])">
@@ -121,7 +121,7 @@
             <div class="col col-80 col-center item-input-inset">
               <select class="assertive item-input-wrapper"
                       style=" height: 29px; padding-left: 4px; width: 100%; border:0"
-                      ng-model="formData.place"
+                      ng-model="medicament.place"
                       ng-change="toggleGroup(groups[2])">
                 <option>Caixa</option>
                 <option>Casa</option>
@@ -138,7 +138,7 @@
                ng-click="toggleGroup(groups[0])"
                ng-class="{active: isGroupShown(groups[0])}">
           Quantidade
-          <span class="item-note color-mfblue"> {{ formData.quantity }} {{ formData.doseTypeString }}</span>
+          <span class="item-note color-mfblue"> {{ medicament.quantity }} {{ medicament.doseTypeString }}</span>
         </label>
         <div class="item-accordion"
              ng-show="isGroupShown(groups[0])">
@@ -146,7 +146,7 @@
           <div class="row">
             <div class="col item-input-inset">
               <label class="item-input-wrapper">
-                <input type="text" name="quantity" placeholder="" ng-model="formData.quantity">
+                <input type="text" name="quantity" placeholder="" ng-model="medicament.quantity">
               </label>
 
             </div>
@@ -154,16 +154,16 @@
               <div class=" button-bar">
                 <a class="button button-outline button-assertive segmented-collapsed"
                    name="doseType"
-                   ng-click="formData.doseType = 0; formData.doseTypeString = 'cp'"
-                   ng-class="{active: formData.doseType == 0}">cp</a>
+                   ng-click="medicament.unit = 0; medicament.doseTypeString = 'cp'"
+                   ng-class="{active: medicament.unit == 0}">cp</a>
                 <a class="button button-outline button-assertive segmented-collapsed"
                    name="doseType"
-                   ng-click="formData.doseType = 1; formData.doseTypeString = 'g'"
-                   ng-class="{active: formData.doseType == 1}">g</a>
+                   ng-click="medicament.unit = 1; medicament.doseTypeString = 'g'"
+                   ng-class="{active: medicament.unit == 1}">g</a>
                 <a class="button button-outline button-assertive segmented-collapsed"
                    name="doseType"
-                   ng-click="formData.doseType = 2; formData.doseTypeString = 'ml'"
-                   ng-class="{active: formData.doseType == 2}">ml</a>
+                   ng-click="medicament.unit = 2; medicament.doseTypeString = 'ml'"
+                   ng-class="{active: medicament.unit == 2}">ml</a>
               </div>
             </div>
           </div>
@@ -174,7 +174,7 @@
                ng-click="toggleGroup(groups[1])"
                ng-class="{active: isGroupShown(groups[1])}">
           Dose
-          <span class="item-note color-mfblue"> {{ formData.dose }} {{ formData.doseTypeString }}</span>
+          <span class="item-note color-mfblue"> {{ medicament.dose }} {{ medicament.doseTypeString }}</span>
         </label>
         <div class="item-accordion"
              ng-show="isGroupShown(groups[1])">
@@ -182,7 +182,7 @@
           <div class="row">
             <div class="col item-input-inset">
               <label class="item-input-wrapper">
-                <input type="text" name="dose" placeholder="" ng-model="formData.dose">
+                <input type="text" name="dose" placeholder="" ng-model="medicament.dose">
               </label>
 
             </div>
@@ -190,16 +190,16 @@
               <div class=" button-bar">
                 <a class="button button-outline button-assertive segmented-collapsed"
                    name="doseType"
-                   ng-click="formData.doseType = 0; formData.doseTypeString = 'cp'"
-                   ng-class="{active: formData.doseType == 0}">cp</a>
+                   ng-click="medicament.unit = 0; medicament.doseTypeString = 'cp'"
+                   ng-class="{active: medicament.unit == 0}">cp</a>
                 <a class="button button-outline button-assertive segmented-collapsed"
                    name="doseType"
-                   ng-click="formData.doseType = 1; formData.doseTypeString = 'g'"
-                   ng-class="{active: formData.doseType == 1}">g</a>
+                   ng-click="medicament.unit = 1; medicament.doseTypeString = 'g'"
+                   ng-class="{active: medicament.unit == 1}">g</a>
                 <a class="button button-outline button-assertive segmented-collapsed"
                    name="doseType"
-                   ng-click="formData.doseType = 2; formData.doseTypeString = 'ml'"
-                   ng-class="{active: formData.doseType == 2}">ml</a>
+                   ng-click="medicament.unit = 2; medicament.doseTypeString = 'ml'"
+                   ng-class="{active: medicament.unit == 2}">ml</a>
               </div>
             </div>
           </div>
@@ -210,7 +210,7 @@
           <div class="row" style="padding-left: 0px">
             <span class="col col-50 input-label assertive" style="padding-left: 0px; ">Preço</span>
             <span class="col color-mfblue" style="text-align: right; ">R$</span>
-            <input ng-model="formData.price"  name="price" class="col col-30 color-mfblue" type="text" style="text-align: right;">
+            <input ng-model="medicament.price"  name="price" class="col col-30 color-mfblue" type="text" style="text-align: right;">
           </div>
         </label>
 
@@ -237,7 +237,7 @@
         <label class="item item-input">
           <span class="input-label assertive" style="width: 20%">Notas</span>
           <label class="item-input" style="width: 75%">
-            <textarea class="color-mfblue" name="notes" ng-model="formData.notes" placeholder="Informações gerais" style="min-height: 100px;"></textarea>
+            <textarea class="color-mfblue" name="notes" ng-model="medicament.notes" placeholder="Informações gerais" style="min-height: 100px;"></textarea>
           </label>
         </label>
 
