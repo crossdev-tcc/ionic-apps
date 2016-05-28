@@ -106,10 +106,9 @@ app.controller('MedicamentCreateCtrl', function($scope,
                                                 Medicament,
                                                 Category,
                                                 ionicDatePicker) {
+
   $scope.medicament = Medicament;
   $scope.category =  Category;
-
-  $scope.doseTypeString = '';
 
   $scope.groups = [];
   $scope.groups[0] = {
@@ -153,13 +152,32 @@ app.controller('MedicamentCreateCtrl', function($scope,
 
       console.log($scope.medicament);
 
-      MedicamentService.insert($scope.medicament);
+      //MedicamentService.insert($scope.medicament);
+      $scope.clearMedicament();
       $state.go('tab.remedio');
     } else {
       console.log("Invalid form");
     }
   };
 
+  $scope.clearMedicament = function () {
+    Medicament.name = null;
+    Medicament.expiration_date  = null;
+    Medicament.quantity  = null;
+    Medicament.unit  = null;
+    Medicament.price  = null;
+    Medicament.dose  = null;
+    Medicament.picture_medicament  = null;
+    Medicament.picture_prescription  = null;
+    Medicament.expired  = null;
+    Medicament.id_pharmacy  = null;
+    Medicament.id_category  = null;
+    Medicament.id_place  = null;
+    Medicament.id_interval  = null;
+    Medicament.notes  = null;
+    Medicament.doseTypeString  = null;
+    Medicament.place  = null;
+  };
 
   /**  DATE PICKER **/
   var dateSelecter = {
