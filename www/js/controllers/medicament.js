@@ -40,12 +40,7 @@ app.controller('MedicamentListCtrl', function($scope, MedicamentService) {
   $scope.isAndroid = ionic.Platform.isAndroid();
 
   MedicamentService.all().then(function(remediosResult){
-    //$scope.remedios =  {
-    //  "filter" : 0,
-    //  "remedios": remediosResult
-    //};
-
-    //Medicament.all().then(function(remediosResult){
+    console.log(remediosResult);
     $scope.remedios = remediosResult
   });
 

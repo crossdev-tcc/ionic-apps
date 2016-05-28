@@ -6,6 +6,9 @@ var app = angular.module('minifarma.controllers.alert', []);
 
 app.factory('Alert', function() {
   var alert = {};
+  alert.startDate = null;
+  alert.startTime= null;
+  alert.presentCorrectTime = null;
   alert.startDateTime = null;
   alert.id_medicament = null;
   alert.id_interval = null;
@@ -27,39 +30,40 @@ app.factory('Medicament', function() {
  *  AlertListCtrl
  **********************************/
 
-app.controller('AlertListCtrl', function($scope, AlertService) {
+app.controller('AlertListCtrl', function($scope, AlertService, MedicamentService) {
 
   $scope.isAndroid = ionic.Platform.isAndroid();
 
-  $scope.data =  {
-    "filter" : true,
-    "alertas": AlertService.all()
-  };
+  AlertService.all().then(function(alertsResult){
+    $scope.alertas = alertsResult;
+  });
 
   $scope.remove = function(alerta) {
     AlertService.remove(alerta);
   };
+
+  $scope.filterValue = 1;
+
+  $scope.getMedicamentName = function (alerta) {
+    var id_medicament = alerta.id_medicament;
+    MedicamentService.getById(id_medicament).then(function(medicament){
+      alerta.medicament_name = medicament.name;
+    });
+  };
+
 });
 
 /**********************************
  *  AlertCreateCtrl
  **********************************/
-app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, ionicTimePicker, Alert, Medicament, AlertService, IntervalService) {
+app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, ionicTimePicker, Alert, Medicament, AlertService) {
 
   $scope.alert = Alert;
   $scope.medicament = Medicament;
-  $scope.startDate = null;
-  $scope.startTime = null;
-  $scope.presentCorrectTime = null;
-
-  //Objeto idIntervals funciona como uma dicionario
-  //key: string
-  //value: array<idIntervalo, numeroIntervalo, complementoString>
-  $scope.idIntervals = IntervalService.intervals;
 
   var dateSelecter = {
     callback: function (val) {
-      $scope.startDate = val;
+      $scope.alert.startDate = val;
     }
   };
 
@@ -69,9 +73,9 @@ app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, ioni
       var selectedTime = new Date(val * 1000);
       var hour = selectedTime.getUTCHours();
       var minute = selectedTime.getUTCMinutes();
-      $scope.presentCorrectTime = hour + ":" + minute;
+      $scope.alert.presentCorrectTime = hour + ":" + minute;
 
-      $scope.startTime = val * 1000;
+      $scope.alert.startTime = val * 1000;
     },
     inputTime: ((new Date()).getHours() * 60 * 60),
     format: 24,
@@ -92,17 +96,11 @@ app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, ioni
     console.log("AlertCreateCtrl::addAlert");
 
     if(form.$valid) {
-      var d = new Date($scope.startDate + $scope.startTime);
+      var d = new Date($scope.alert.startDate + $scope.alert.startTime);
       $scope.alert.startDateTime = d;
-      //se precisar salvar como numero de milisegundos desde 01/01/1970 basta colocar d.getTime()
-      //depos para colocar no formato de data, basta criar uma data com esse valor - new Date(d)
-      $scope.alert.durationNumber = form.duration.$viewValue;
-      $scope.alert.durationUnity = form.durationUnity;
       $scope.alert.active = 1;
-      $scope.alert.id_interval = $scope.idIntervals[form.interval.$viewValue][0];
       $scope.alert.id_medicament = $scope.medicament.id;
 
-      console.log($scope.alert);
       AlertService.insert($scope.alert);
       $state.go('tab.alerta');
     } else {

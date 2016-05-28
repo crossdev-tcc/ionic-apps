@@ -21,24 +21,18 @@
       <ion-list >
 
         <img src="img/barraDataInicio.png" width="100%"/>
-        <label class="item item-icon-right assertive"
-        ng-click="openDatePicker()"
-        name="startDate"
-        ng-model="formData.startDate">
+        <label class="item item-icon-right assertive" ng-click="openDatePicker()">
             Data de Início
           <span class="item-note calm">
-            {{ startDate | date:'dd/MM/yyyy' }}
+            {{ alert.startDate | date:'dd/MM/yyyy' }}
           </span>
           <i class="icon ion-ios-arrow-forward" style="color: lightgray"></i>
         </label>
 
-        <label class="item item-icon-right assertive"
-               ng-click="openTimePicker()"
-               name="startTime"
-               ng-model="formData.startTime">
+        <label class="item item-icon-right assertive" ng-click="openTimePicker()">
           Hora de Início
           <span class="item-note calm">
-            {{ presentCorrectTime }}
+            {{ alert.presentCorrectTime }}
           </span>
           <i class="icon ion-ios-arrow-forward" style="color: lightgray"></i>
         </label>
@@ -52,20 +46,20 @@
               <label class="item-input-wrapper">
                 <input type="text"
                 name="duration"
-                ng-model="formData.duration" />
+                ng-model="alert.durationNumber" />
               </label>
             </div>
             <div class="col col-75">
               <div class=" button-bar">
                 <a class="button button-outline button-assertive segmented-collapsed"
-                   ng-click="createAlertForm.durationUnity=0"
-                   ng-class="{active: createAlertForm.durationUnity == 0}">dia</a>
+                   ng-click="alert.durationUnity=0"
+                   ng-class="{active: alert.durationUnity == 0}">dia</a>
                 <a class="button button-outline button-assertive segmented-collapsed"
-                   ng-click="createAlertForm.durationUnity=1"
-                   ng-class="{active: createAlertForm.durationUnity == 1}">semana</a>
+                   ng-click="alert.durationUnity=1"
+                   ng-class="{active: alert.durationUnity == 1}">semana</a>
                 <a class="button button-outline button-assertive segmented-collapsed"
-                   ng-click="createAlertForm.durationUnity=2"
-                   ng-class="{active: createAlertForm.durationUnity == 2}">mês</a>
+                   ng-click="alert.durationUnity=2"
+                   ng-class="{active: alert.durationUnity == 2}">mês</a>
               </div>
             </div>
           </div>
@@ -77,15 +71,15 @@
           <div class="input-label assertive">
             Intervalo
           </div>
-          <select name="interval" ng-model="formData.interval">
-            <option>1 hora</option>
-            <option>2 horas</option>
-            <option>3 horas</option>
-            <option>4 horas</option>
-            <option>6 horas</option>
-            <option>8 horas</option>
-            <option>12 horas</option>
-            <option>24 horas</option>
+          <select name="interval" ng-model="alert.id_interval">
+            <option value=1>1 hora</option>
+            <option value=2>2 horas</option>
+            <option value=3>3 horas</option>
+            <option value=4>4 horas</option>
+            <option value=5>6 horas</option>
+            <option value=6>8 horas</option>
+            <option value=7>12 horas</option>
+            <option value=8>24 horas</option>
           </select>
         </label>
 
