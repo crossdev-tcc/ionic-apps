@@ -177,6 +177,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
     Medicament.notes  = null;
     Medicament.doseTypeString  = null;
     Medicament.place  = null;
+    Category.name = '';
   };
 
   /**  DATE PICKER **/
@@ -313,6 +314,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
 
   /** CANCEL AND GO BACK */
   $scope.cancelCreate = function () {
+    $scope.clearMedicament();
     $state.go('tab.remedio');
   };
 
