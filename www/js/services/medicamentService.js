@@ -5,7 +5,7 @@ var app = angular.module('minifarma.services.medicamentService', [])
     var self = this;
 
     self.all = function () {
-      return DB.query('SELECT * FROM Medicament')
+      return DB.query('SELECT * FROM medicament')
         .then(function (result) {
           return DB.fetchAll(result);
         });
@@ -15,7 +15,7 @@ var app = angular.module('minifarma.services.medicamentService', [])
       if (id == 0) {
         id = 1;
       }
-      return DB.query('SELECT * FROM Medicament WHERE id = ?', [id])
+      return DB.query('SELECT * FROM medicament WHERE id = ?', [id])
         .then(function (result) {
           return DB.fetch(result);
         });
@@ -36,18 +36,17 @@ var app = angular.module('minifarma.services.medicamentService', [])
         medicament.id_place,
         medicament.id_interval,
         medicament.notes];
-      return DB.query('INSERT INTO Medicament (name, expiration_date, quantity, unit, price, dose, picture_medicament, picture_prescription, expired, id_pharmacy, id_category, id_place, id_interval, notes) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)', parameters);
-      //INSERT INTO Medicament (name, expiration_date, quantity, unit, price, dose, picture_medicament, picture_prescription, expired, id_pharmacy, id_category, id_place, id_interval, notes) VALUES (?,?,?,?,?,?,?,?,1,?,?,?,?,?)'
+      return DB.query('INSERT INTO medicament (name, expiration_date, quantity, unit, price, dose, picture_medicament, picture_prescription, expired, id_pharmacy, id_category, id_place, id_interval, notes) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)', parameters);
     };
 
     self.update = function(id, medicament) {
       var parameters = [medicament.name, medicament.expired, medicament.id];
-      return DB.query('UPDATE Medicament set name = (?), expired = (?) WHERE id = (?)', parameters);
+      return DB.query('UPDATE medicament set name = (?), expired = (?) WHERE id = (?)', parameters);
     };
 
     self.remove = function(medicament) {
       var parameters = [medicament.id];
-      return DB.query('DELETE FROM Medicament WHERE id = (?)', parameters)
+      return DB.query('DELETE FROM medicament WHERE id = (?)', parameters)
         .then(function (result) {
             console.log("Deleted medicament" + result);
           },

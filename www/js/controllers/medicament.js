@@ -71,7 +71,7 @@ app.controller('MedicamentCategoryListCtrl', function($scope,
 });
 
 /**********************************
- *  Medicament Prescription Picture
+ *  medicament Prescription Picture
  **********************************/
 app.controller('MedicamentPicture', function($scope,
                                              $ionicHistory,
