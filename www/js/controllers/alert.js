@@ -62,7 +62,7 @@ app.controller('AlertListCtrl', function($scope, AlertService, MedicamentService
     };
 
     alerta.nextDoseDate = dateFormat(nextDoseDate, "dd/mm/yyyy HH:MM");
-    
+
   };
 
 });
@@ -83,12 +83,8 @@ app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, ioni
 
   var timeSelecter = {
     callback: function (val) {
-
       var selectedTime = new Date(val * 1000);
-      var hour = selectedTime.getUTCHours();
-      var minute = selectedTime.getUTCMinutes();
-      $scope.alert.presentCorrectTime = hour + ":" + minute;
-
+      $scope.alert.presentCorrectTime = dateFormat(selectedTime, "HH:MM", true);
       $scope.alert.startTime = val * 1000;
     },
     inputTime: ((new Date()).getHours() * 60 * 60),
