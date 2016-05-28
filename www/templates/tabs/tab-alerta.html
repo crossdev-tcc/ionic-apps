@@ -3,11 +3,11 @@
   <div class="platform-android bar-custom bar bar-subheader">
     <div class="button-bar">
       <a class="button button-outline button-assertive"
-         ng-click="data.filter=true"
-         ng-class="{active: data.filter == true}">Ativos</a>
+         ng-click="filterValue = 1"
+         ng-class="{active: filterValue == 1}">Ativos</a>
       <a class="button button-outline button-assertive"
-         ng-click="data.filter=false"
-         ng-class="{active: data.filter == false}">Inativos</a>
+         ng-click="filterValue = 0"
+         ng-class="{active: filterValue == 0}">Inativos</a>
     </div>
   </div>
 
@@ -17,21 +17,15 @@
 
   <ion-content class="has-header has-subheader">
     <ion-list>
-      <ion-item class="item-thumbnail-left item-icon-right" ng-repeat="alerta in data.alertas | filter : data.filter" type="item-text-wrap" href="#/tab/alertas/{{alerta.id}}">
-        <img ng-src="{{alerta.face}}">
+      <ion-item class="item-thumbnail-left item-icon-right"
+                ng-repeat="alerta in alertas | filter: { active : filterValue } : true"
+                type="item-text-wrap"
+                href="#/tab/alertas/{{alerta.id}}">
+        <img ng-src="../img/ionic.png">
 
-        <h2 class="item-text-center-vertical color-mfblue">{{alerta.name}}</h2>
-        <p class="color-mfblue">Próxima: {{alerta.nextDate}}</p>
-        <!--<ion-toggle  ng-checked="alerta.active">-->
-          <!--<h2 class="item-text-center-vertical color-mfblue">{{alerta.name}}</h2>-->
-          <!--<p class="color-mfblue">Próxima: {{alerta.nextDate}}</p>-->
-        <!--</ion-toggle>-->
-        <!--<label class="toggle" ng-checked="alerta.active">-->
-          <!--<input type="checkbox">-->
-          <!--<div class="track">-->
-            <!--<div class="handle"></div>-->
-          <!--</div>-->
-        <!--</label>-->
+        <h2 class="item-text-center-vertical color-mfblue" ng-init="getMedicamentName(alerta)">{{ alerta.medicament_name }} </h2>
+        <p class="color-mfblue">Próxima: {{alerta.startDate }} </p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
 
         <ion-option-button class="button-assertive" ng-click="remove(alerta)">
           Delete

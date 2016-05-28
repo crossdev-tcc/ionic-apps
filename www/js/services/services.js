@@ -12,7 +12,7 @@ angular.module('minifarma.services', [])
       if (window.cordova) {
         self.db = $cordovaSQLite.openDB({name: DB_CONFIG.name, location: 'default'});
       } else {
-        console.log('websql');
+        // console.log('websql');
         self.db = window.openDatabase(DB_CONFIG.name, "1.0", "MiniFarma", -1);
       }
 
@@ -34,9 +34,9 @@ angular.module('minifarma.services', [])
         } else {
           query = 'CREATE TABLE IF NOT EXISTS ' + table.name + ' (' + columns.join(',') + ')';
         }
-        console.log(query);
+        // console.log(query);
         self.query(query);
-        console.log('Table ' + table.name + ' initialized');
+        // console.log('Table ' + table.name + ' initialized');
       });
     };
 
@@ -108,6 +108,9 @@ angular.module('minifarma.services', [])
     };
 
     self.getById = function (id) {
+      if (id == 0) {
+        id = 1;
+      }
       return DB.query('SELECT * FROM Medicament WHERE id = ?', [id])
         .then(function (result) {
           return DB.fetch(result);
@@ -193,14 +196,14 @@ angular.module('minifarma.services', [])
     var self = this;
 
     self.intervals = {
-      '1 hora':   [0, 1, 'hora'],
-      '2 horas':  [1, 2, 'horas'],
-      '3 horas':  [2, 3, 'horas'],
-      '4 horas':  [3, 4, 'horas'],
-      '6 horas':  [4, 6, 'horas'],
-      '8 horas':  [5, 8, 'horas'],
-      '12 horas': [6, 12, 'horas'],
-      '24 horas': [7, 24, 'horas']
+      1 : [1, '1 hora'],
+      2 : [2, '2 horas'],
+      3 : [3, '3 horas'],
+      4 : [4, '4 horas'],
+      5 : [6, '6 horas'],
+      6 : [8, '8 horas'],
+      7 : [12, '12 horas'],
+      8 : [24, '24 horas']
     };
 
     return self

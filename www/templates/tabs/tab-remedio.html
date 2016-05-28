@@ -16,7 +16,7 @@
   <ion-content class="has-header has-subheader">
     <ion-list>
       <ion-item class=" item-thumbnail-left item-icon-right" ng-repeat="remedio in remedios | filter:{expired:filterValue}:true" type="item-text-wrap" href="#/tab/remedios/{{remedio.id}}">
-        <img ng-src="{{remedio.face}}">
+        <img ng-src="../img/ionic.png">
         <h2 class="item-text-center-vertical color-mfblue">{{remedio.name}}</h2>
         <p class="color-mfblue">{{remedio.expirationDate}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
