@@ -39,8 +39,7 @@ app.controller('MedicamentListCtrl', function($scope, MedicamentService) {
 
   $scope.isAndroid = ionic.Platform.isAndroid();
 
-  MedicamentService.all().then(function(remediosResult){
-    console.log(remediosResult);
+  MedicamentService.all().then(function(remediosResult) {
     $scope.remedios = remediosResult
   });
 
@@ -60,20 +59,9 @@ app.controller('MedicamentCategoryListCtrl', function($scope,
   $scope.selectedCategory =  Category;
   $scope.shouldShowDelete = false;
 
-  $scope.categories = [
-    {
-      name: "Antidrepessivos"
-    },
-    {
-      name: "Dor de cabeça"
-    },
-    {
-      name: "Dor muscular"
-    },
-    {
-      name: "Hipertensão"
-    }
-  ];
+  MedicamentService.categories().then(function(categoriesResult) {
+    $scope.categories = categoriesResult
+  });
 
   $scope.select = function(categoryName) {
     $scope.selectedCategory.name = categoryName;
@@ -135,7 +123,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
     return $scope.shownGroup === group;
   };
 
-  /**  ADD MEDICAMENT **/
+  /** ADD MEDICAMENT **/
   $scope.addMedicament = function (form) {
 
     console.log("MedicamentCreateCtrl::addMedicament");
@@ -160,6 +148,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
     }
   };
 
+  /** CLEAR MEDICAMENT DATA **/
   $scope.clearMedicament = function () {
     Medicament.name = null;
     Medicament.expiration_date  = null;
@@ -180,7 +169,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
     Category.name = '';
   };
 
-  /**  DATE PICKER **/
+  /** DATE PICKER **/
   var dateSelecter = {
     callback: function (val) {
       var today = new Date();
@@ -198,19 +187,19 @@ app.controller('MedicamentCreateCtrl', function($scope,
     ionicDatePicker.openDatePicker(dateSelecter);
   };
 
-  /** MEDICAMENT PICTURE */
+  /** MEDICAMENT PICTURE **/
   $scope.addMedicamentPicture = function () {
     $scope.pictureType = "medicament";
     $scope.addPicture();
   };
 
-  /** PRESCRIPTION PICTURE */
+  /** PRESCRIPTION PICTURE **/
   $scope.addPrescriptionPicture = function () {
     $scope.pictureType = "prescription";
     $scope.addPicture();
   };
 
-  /** ADD A PICTURE */
+  /** ADD A PICTURE **/
   $scope.addPicture = function () {
     console.log("Let's add a picture!");
 
@@ -312,7 +301,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
 
   };
 
-  /** CANCEL AND GO BACK */
+  /** CANCEL AND GO BACK **/
   $scope.cancelCreate = function () {
     $scope.clearMedicament();
     $state.go('tab.remedio');

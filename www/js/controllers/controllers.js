@@ -3,5 +3,4 @@ angular.module('minifarma.controllers', [
     'minifarma.controllers.medicament',
     'minifarma.controllers.alert',
     'minifarma.controllers.pharmacy'
-
-])
+]);
