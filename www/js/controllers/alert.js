@@ -29,10 +29,11 @@ app.factory('Medicament', function() {
 /**********************************
  *  AlertListCtrl
  **********************************/
-app.controller('AlertListCtrl', function($scope, AlertService, MedicamentService) {
+app.controller('AlertListCtrl', function($scope, AlertService, MedicamentService, IntervalService) {
 
   $scope.isAndroid = ionic.Platform.isAndroid();
   $scope.filterValue = 1;
+  $scope.intervals = IntervalService.intervals;
 
   AlertService.all().then(function(alertsResult){
     $scope.alertas = alertsResult;
@@ -48,6 +49,20 @@ app.controller('AlertListCtrl', function($scope, AlertService, MedicamentService
   $scope.remove = function(alerta) {
     AlertService.remove(alerta);
     $scope.alertas.splice($scope.alertas.indexOf(alerta), 1);
+  };
+
+  $scope.defineNextDate = function (alerta) {
+
+    var interval = $scope.intervals[alerta.id_interval];
+    var now = new Date();
+    var nextDoseDate = new Date(alerta.startDate);
+
+    while(nextDoseDate < now) {
+      nextDoseDate = nextDoseDate.setSeconds(3600 * interval);
+    };
+
+    alerta.nextDoseDate = dateFormat(nextDoseDate, "dd/mm/yyyy HH:MM");
+    
   };
 
 });
@@ -116,9 +131,7 @@ app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, ioni
 /**********************************
  *  MedicamentAlertListCtrl
  **********************************/
-app.controller('MedicamentAlertListCtrl', function($scope, $ionicHistory, Medicament,
-                                                   MedicamentService,
-                                                   $ionicConfig) {
+app.controller('MedicamentAlertListCtrl', function($scope, $ionicHistory, Medicament, MedicamentService, $ionicConfig) {
 
   $ionicConfig.backButton.text("Alerta");
 

@@ -24,7 +24,7 @@
         <img ng-src="../img/ionic.png">
 
         <h2 class="item-text-center-vertical color-mfblue" ng-init="getMedicamentName(alerta)">{{ alerta.medicament_name }} </h2>
-        <p class="color-mfblue">Próxima: {{alerta.startDate }} </p>
+        <p class="color-mfblue" ng-init="defineNextDate(alerta)">Próxima: {{alerta.nextDoseDate }} </p>
         <i class="icon ion-chevron-right icon-accessory"></i>
 
         <ion-option-button class="button-assertive" ng-click="remove(alerta)">
