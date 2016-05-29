@@ -152,7 +152,7 @@ app.controller('MedicamentCreateCtrl', function($scope,
 
       console.log($scope.medicament);
 
-      //MedicamentService.insert($scope.medicament);
+      MedicamentService.insert($scope.medicament);
       $scope.clearMedicament();
       $state.go('tab.remedio');
     } else {

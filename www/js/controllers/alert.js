@@ -70,7 +70,7 @@ app.controller('AlertListCtrl', function($scope, AlertService, MedicamentService
 /**********************************
  *  AlertCreateCtrl
  **********************************/
-app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, ionicTimePicker, Alert, Medicament, AlertService) {
+app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, ionicTimePicker, Alert, Medicament, AlertService, $cordovaLocalNotification) {
 
   $scope.alert = Alert;
   $scope.medicament = Medicament;
@@ -111,7 +111,20 @@ app.controller('AlertCreateCtrl', function($scope, $state, ionicDatePicker, ioni
       $scope.alert.active = 1;
       $scope.alert.id_medicament = $scope.medicament.id;
 
-      AlertService.insert($scope.alert);
+      AlertService.insert($scope.alert).then(function () {
+        var now = new Date().getTime();
+        window.plugin.notification.local.add({
+          id:         "meu id teste",
+          date:       new Date(now + 10000),
+          message:    "Minha mensagem",
+          title:      "Meu titulo",
+          repeat:     'daily',
+          json:       "meus dados",  // Data to be passed through the notification
+          autoCancel: false, // Setting this flag and the notification is automatically canceled when the user clicks it
+          ongoing:    true, // Prevent clearing of notification (Android only)
+        });
+      });
+
       $state.go('tab.alerta');
     } else {
       console.log("Invalid form");

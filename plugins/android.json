@@ -33,7 +33,14 @@
         },
         "cordova-sqlite-storage": {
             "PACKAGE_NAME": "com.br.app.minifarma"
+        },
+        "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "com.br.app.minifarma"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-app-event": {
+            "PACKAGE_NAME": "com.br.app.minifarma"
+        }
+    }
 }
