@@ -41,7 +41,7 @@ app.constant('DB_CONFIG', {
           {name: 'id_medicament', type: 'integer'}
         ],
         foreign: [
-          { key: "id_medicament", references: "Medicament(id)"},
+          { key: "id_medicament", references: "medicament(id)"},
           { key: "id_interval", references: "Interval(id)"}
         ]
       },
@@ -71,7 +71,7 @@ app.constant('DB_CONFIG', {
           {name: 'id_medicament', type: 'integer'}
         ],
         foreign: [
-          { key: "id_medicament", references: "Medicament(id)"}
+          { key: "id_medicament", references: "medicament(id)"}
         ]
       },
       {
